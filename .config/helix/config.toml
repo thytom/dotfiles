@@ -1,0 +1,26 @@
+theme = "archie"
+
+[editor]
+mouse = true
+gutters = ["diagnostics", "line-numbers"]
+auto-completion = true
+auto-format = true
+true-color = true
+rulers = [100]
+color-modes = true
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.file-picker]
+hidden = false
+
+[editor.statusline]
+left = ["mode", "spinner"]
+center = ["file-name"]
+right = ["diagnostics", "selections", "position"
+      , "position-percentage", "file-encoding", "file-type"]
+      
+[editor.indent-guides]
+renger = true
+character = '|'

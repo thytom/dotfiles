@@ -24,3 +24,36 @@ right = ["diagnostics", "selections", "position"
 [editor.indent-guides]
 renger = true
 character = '|'
+
+[keys.normal]
+# Quick iteration on config changes
+C-o = ":config-open"
+C-r = ":config-reload"
+
+"{" = ["goto_prev_paragraph", "collapse_selection"]
+"}" = ["goto_next_paragraph", "collapse_selection"]
+0 = "goto_line_start"
+"$" = "goto_line_end"
+"^" = "goto_first_nonwhitespace"
+G = "goto_file_end"
+"%" = "match_brackets"
+V = ["select_mode", "extend_to_line_bounds"]
+D = ["extend_to_line_end", "delete_selection"]
+S = "surround_add" # Would be nice to be able to do something after this but it isn't chainable
+"|" = ":vs"
+"_" = ":sp"
+
+[keys.select]
+"{" = ["extend_to_line_bounds", "goto_prev_paragraph"]
+"}" = ["extend_to_line_bounds", "goto_next_paragraph"]
+0 = "goto_line_start"
+"$" = "goto_line_end"
+"^" = "goto_first_nonwhitespace"
+G = "goto_file_end"
+D = ["extend_to_line_bounds", "delete_selection", "normal_mode"]
+C = ["goto_line_start", "extend_to_line_bounds", "change_selection"]
+"%" = "match_brackets"
+S = "surround_add" # Basically 99% of what I use vim-surround for
+# Visual-mode specific muscle memory
+i = "select_textobject_inner"
+a = "select_textobject_around"

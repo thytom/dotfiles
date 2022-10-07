@@ -6,7 +6,7 @@ gutters = ["diagnostics", "line-numbers"]
 auto-completion = true
 auto-format = true
 true-color = true
-rulers = [100]
+#rulers = [100]
 color-modes = true
 
 [editor.cursor-shape]
@@ -42,6 +42,7 @@ D = ["extend_to_line_end", "delete_selection"]
 S = "surround_add" # Would be nice to be able to do something after this but it isn't chainable
 "|" = ":vs"
 "_" = ":sp"
+g = { q = ":reflow" }
 
 [keys.select]
 "{" = ["extend_to_line_bounds", "goto_prev_paragraph"]
@@ -57,3 +58,4 @@ S = "surround_add" # Basically 99% of what I use vim-surround for
 # Visual-mode specific muscle memory
 i = "select_textobject_inner"
 a = "select_textobject_around"
+g = { q = ":reflow" }

@@ -22,12 +22,12 @@ right = ["diagnostics", "selections", "position"
       , "position-percentage", "file-encoding", "file-type"]
       
 [editor.indent-guides]
-renger = true
+render = false
 character = '|'
 
 [keys.normal]
 # Quick iteration on config changes
-C-o = ":config-open"
+#C-o = ":config-open"
 C-r = ":config-reload"
 
 "{" = ["goto_prev_paragraph", "collapse_selection"]

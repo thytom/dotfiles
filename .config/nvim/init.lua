@@ -19,15 +19,18 @@ require("lazy").setup({
   {"neoclide/coc.nvim", branch = "release"},
   {'vim-airline/vim-airline'},
   {'vim-airline/vim-airline-themes'},
-  {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate'},
+  {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', opts={highlight={enable=true}}},
   {'junegunn/fzf', build = vim.fn['fzf#install']},
   {'junegunn/fzf.vim'},
   {'windwp/nvim-autopairs'},
   {'gelguy/wilder.nvim', build = ":UpdateRemotePlugins"},
   {'oneslash/helix-nvim', version = "*"},
   {'Mofiqul/dracula.nvim'},
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   {'nvim-tree/nvim-tree.lua'},
-  {'nvim-tree/nvim-web-devicons'}
+  {'nvim-tree/nvim-web-devicons'},
+  {'mfussenegger/nvim-dap'},
+  {'rcarriga/nvim-dap-ui'}
 }, opts)
 
 vim.cmd([[
@@ -61,6 +64,7 @@ vim.call('plug#end')
 --]]
 
 require('nvim-autopairs').setup{}
+require("dapui").setup()
 
 local wilder = require('wilder')
 
@@ -104,6 +108,10 @@ wilder.set_option('pipeline', {
 
 vim.keymap.set('n', '_', '<cmd>split<cr>')
 vim.keymap.set('n', '<space>f', '<cmd>Files<cr>')
+vim.keymap.set('n', '<space>g', '<cmd>GitFiles<cr>')
+vim.keymap.set('n', '<space>b', '<cmd>Buffers<cr>')
+
+vim.keymap.set('n', '<space>bk', '<cmd>lua require\'dap\'.toggle_breakpoint()<cr>')
 
 
 vim.cmd([[
@@ -118,6 +126,10 @@ nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
 nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 
 nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
+
+command! BufOnly execute '%bdelete|edit#|bdelete#'
+
+nnoremap <silent> <space>o :BufOnly<CR>
 
 nmap <leader>do <Plug>(coc-codeaction)
 
@@ -165,8 +177,6 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 
-colorscheme dracula
-
 ]])
 --]]
 --
@@ -190,4 +200,32 @@ require("nvim-tree").setup({
   filters = {
     dotfiles = true,
   },
+})
+
+require("nvim-treesitter.install").prefer_git = true
+
+vim.cmd.colorscheme "catppuccin"
+
+require("catppuccin").setup({
+  flavour="mocha",
+  background = {
+    light = "latte",
+    dark = "mocha"
+  },
+  transparent_background = true,
+  show_end_of_buffer=true,
+  integrations = {
+    nvimtree = true,
+    treesitter = true,
+  },
+})
+
+vim.api.nvim_create_autocmd({"BufWrite"}, {
+  pattern = {"*.c", "*.h", "*.cc", "*.cpp", "*.hh", "*.hpp"},
+  command = "call CocAction('format')"
+})
+
+vim.api.nvim_create_autocmd({"BufEnter"}, {
+  pattern = {"*.c", "*.h", "*.cc", "*.cpp", "*.hh", "*.hpp"},
+  command = "set syntax=cpp.doxygen"
 })

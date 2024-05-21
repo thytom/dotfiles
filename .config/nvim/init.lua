@@ -30,7 +30,8 @@ require("lazy").setup({
   {'nvim-tree/nvim-tree.lua'},
   {'nvim-tree/nvim-web-devicons'},
   {'mfussenegger/nvim-dap'},
-  {'rcarriga/nvim-dap-ui'}
+  {'rcarriga/nvim-dap-ui'},
+  {'NLKNguyen/papercolor-theme'}
 }, opts)
 
 vim.cmd([[
@@ -45,6 +46,9 @@ set shiftwidth=2
 set tabstop=2
 set encoding=utf8
 set history=5000
+set cursorline
+let g:airline_theme='catppuccin'
+set formatoptions=tcr
 ]])
 
 --[[
@@ -62,7 +66,8 @@ Plug 'windwp/nvim-autopairs'
 
 vim.call('plug#end')
 --]]
-
+--
+--
 require('nvim-autopairs').setup{}
 require("dapui").setup()
 
@@ -204,21 +209,21 @@ require("nvim-tree").setup({
 
 require("nvim-treesitter.install").prefer_git = true
 
-vim.cmd.colorscheme "catppuccin"
-
 require("catppuccin").setup({
   flavour="mocha",
   background = {
     light = "latte",
     dark = "mocha"
   },
-  transparent_background = true,
+  transparent_background = false,
   show_end_of_buffer=true,
   integrations = {
     nvimtree = true,
     treesitter = true,
   },
 })
+
+vim.cmd.colorscheme "catppuccin"
 
 vim.api.nvim_create_autocmd({"BufWrite"}, {
   pattern = {"*.c", "*.h", "*.cc", "*.cpp", "*.hh", "*.hpp"},

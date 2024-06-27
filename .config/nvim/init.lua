@@ -16,12 +16,15 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  {"neoclide/coc.nvim", branch = "release"},
   {'vim-airline/vim-airline'},
   {'vim-airline/vim-airline-themes'},
   {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', opts={highlight={enable=true}}},
-  {'junegunn/fzf', build = vim.fn['fzf#install']},
-  {'junegunn/fzf.vim'},
+  {'ibhagwan/fzf-lua'
+  , dependencies = {'nvim-tree/nvim-web-devicons'}
+  , config = function()
+    require("fzf-lua").setup({})
+  end
+  },
   {'windwp/nvim-autopairs'},
   {'gelguy/wilder.nvim', build = ":UpdateRemotePlugins"},
   {'oneslash/helix-nvim', version = "*"},
@@ -29,10 +32,13 @@ require("lazy").setup({
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   {'nvim-tree/nvim-tree.lua'},
   {'nvim-tree/nvim-web-devicons'},
-  {'mfussenegger/nvim-dap'},
-  {'rcarriga/nvim-dap-ui'},
-  {'NLKNguyen/papercolor-theme'}
+  {'NLKNguyen/papercolor-theme'},
+  {'pocco81/true-zen.nvim'},
+  {'neovim/nvim-lspconfig'},
+  {'ranjithshegde/ccls.nvim'}
 }, opts)
+
+require('lspconfig').ccls.setup({})
 
 vim.cmd([[
 set mouse=a
@@ -69,9 +75,10 @@ vim.call('plug#end')
 --
 --
 require('nvim-autopairs').setup{}
-require("dapui").setup()
 
 local wilder = require('wilder')
+
+vim.g.mapleader=','
 
 wilder.setup({modes = {':', '/', '?'}})
 
@@ -112,21 +119,28 @@ wilder.set_option('pipeline', {
 })
 
 vim.keymap.set('n', '_', '<cmd>split<cr>')
-vim.keymap.set('n', '<space>f', '<cmd>Files<cr>')
-vim.keymap.set('n', '<space>g', '<cmd>GitFiles<cr>')
-vim.keymap.set('n', '<space>b', '<cmd>Buffers<cr>')
+vim.keymap.set('n', '<space>f', '<cmd>FzfLua files<cr>')
+vim.keymap.set('n', '<space>g', '<cmd>FzfLua git_files<cr>')
+vim.keymap.set('n', '<space>b', '<cmd>FzfLua buffers<cr>')
 
 vim.keymap.set('n', '<space>bk', '<cmd>lua require\'dap\'.toggle_breakpoint()<cr>')
 
 
+-- nnoremap <silent> gd <Plug>(coc-definition)
+-- nnoremap <silent> gy <Plug>(coc-type-definition)
+-- nnoremap <silent> gr <Plug>(coc-references)
+-- nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
+-- nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
+
+
+--nmap <leader>do <Plug>(coc-codeaction)
+--
+--nmap <leader>rn <Plug>(coc-rename)
+
 vim.cmd([[
 nmap \| <cmd>vsplit<cr>
 
-nnoremap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> gy <Plug>(coc-type-definition)
-nnoremap <silent> gr <Plug>(coc-references)
-nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
-nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
+nnoremap <silent> <leader>gy :TZAtaraxis<CR>
 
 nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 
@@ -135,10 +149,6 @@ nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
 command! BufOnly execute '%bdelete|edit#|bdelete#'
 
 nnoremap <silent> <space>o :BufOnly<CR>
-
-nmap <leader>do <Plug>(coc-codeaction)
-
-nmap <leader>rn <Plug>(coc-rename)
 
 let g:airline#extensions#tabline#enabled = 1
 
@@ -168,21 +178,21 @@ nnoremap gn <cmd>bnext<cr>
 nnoremap gp <cmd>bprev<cr>
 
 nnoremap <space>t <cmd>NvimTreeToggle<cr>
+]])
+
+--[[
 
 inoremap <silent><expr> <Tab>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-
 inoremap <silent><expr> <c-space> coc#refresh()
-
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+--]]
 
-
-]])
 --]]
 --
 ---- set termguicolors to enable highlight groups

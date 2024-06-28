@@ -18,7 +18,9 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   {'vim-airline/vim-airline'},
   {'vim-airline/vim-airline-themes'},
+
   {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', opts={highlight={enable=true}}},
+
   {'ibhagwan/fzf-lua'
   , dependencies = {'nvim-tree/nvim-web-devicons'}
   , config = function()
@@ -29,11 +31,18 @@ require("lazy").setup({
   {'gelguy/wilder.nvim', build = ":UpdateRemotePlugins"},
   {'oneslash/helix-nvim', version = "*"},
   {'Mofiqul/dracula.nvim'},
+
+  --
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+
+
   {'nvim-tree/nvim-tree.lua'},
   {'nvim-tree/nvim-web-devicons'},
+
   {'NLKNguyen/papercolor-theme'},
+
   {'pocco81/true-zen.nvim'},
+
   {"neovim/nvim-lspconfig", -- REQUIRED: for native Neovim LSP integration
     lazy = false, -- REQUIRED: tell lazy.nvim to start this plugin at startup
     dependencies = {
@@ -156,7 +165,9 @@ wilder.set_option('pipeline', {
   ),
 })
 
+--
 vim.keymap.set('n', '_', '<cmd>split<cr>')
+
 vim.keymap.set('n', '<space>f', '<cmd>FzfLua files<cr>')
 vim.keymap.set('n', '<space>g', '<cmd>FzfLua git_files<cr>')
 vim.keymap.set('n', '<space>b', '<cmd>FzfLua buffers<cr>')
@@ -181,7 +192,6 @@ nmap \| <cmd>vsplit<cr>
 nnoremap <silent> <leader>gy :TZAtaraxis<CR>
 
 nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
-
 nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
 
 command! BufOnly execute '%bdelete|edit#|bdelete#'

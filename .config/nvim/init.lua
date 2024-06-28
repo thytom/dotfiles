@@ -63,9 +63,20 @@ require("lazy").setup({
     end,
   },
   {'ranjithshegde/ccls.nvim'},
+  {'nvim-lua/plenary.nvim'},
+  {'joechrisellis/lsp-format-modifications.nvim'},
 }, opts)
 
-require('lspconfig').ccls.setup({})
+require('lspconfig').ccls.setup({
+    lsp = {
+        codelens = {
+            enable = true,
+            events = {"BufWritePost", "InsertLeave"}
+        }
+    }
+})
+
+require('lspconfig').ccls.setup(require('coq').lsp_ensure_capabilities())
 
 vim.cmd([[
 set mouse=a

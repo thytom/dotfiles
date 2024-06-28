@@ -262,11 +262,6 @@ require("catppuccin").setup({
 
 vim.cmd.colorscheme "catppuccin"
 
-vim.api.nvim_create_autocmd({"BufWrite"}, {
-  pattern = {"*.c", "*.h", "*.cc", "*.cpp", "*.hh", "*.hpp"},
-  command = "call CocAction('format')"
-})
-
 vim.api.nvim_create_autocmd({"BufEnter"}, {
   pattern = {"*.c", "*.h", "*.cc", "*.cpp", "*.hh", "*.hpp"},
   command = "set syntax=cpp.doxygen"

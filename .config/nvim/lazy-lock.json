@@ -1,6 +1,9 @@
 {
   "catppuccin": { "branch": "main", "commit": "894efb557728e532aa98b98029d16907a214ec05" },
   "ccls.nvim": { "branch": "main", "commit": "4950b31ac04443076797e4ad367b5db7305df047" },
+  "coq.artifacts": { "branch": "artifacts", "commit": "9c5067a471322c6bb866545e88e5b28c82511865" },
+  "coq.thirdparty": { "branch": "3p", "commit": "5f45777bcb0c14266a7e07ed474cb70c4e8b6397" },
+  "coq_nvim": { "branch": "coq", "commit": "6b35465a58052f06b5ee0ca63606439ea7c862e8" },
   "dracula.nvim": { "branch": "main", "commit": "8d8bddb8814c3e7e62d80dda65a9876f97eb699c" },
   "fzf-lua": { "branch": "main", "commit": "41ea49cfc1b3f0586753bbeb7850474f28dc22cf" },
   "helix-nvim": { "branch": "main", "commit": "8f21e1ac8a06431d3814c069df1bc140d249c93c" },

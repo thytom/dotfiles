@@ -1,7 +1,29 @@
--- disable netrw at the very start of your init.lua
+-- Required to make nvim-tree the default
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+---- NEOVIM GENERAL CONFIGURATION
+vim.o.mouse="a"
+vim.o.hlsearch=false
+vim.o.number=true
+vim.o.expandtab=true
+vim.o.smartindent=true
+vim.o.shiftwidth=2
+vim.o.tabstop=2
+vim.o.encoding="utf8"
+vim.o.history=5000
+vim.o.cursorline=true
+vim.o.formatoptions="tcr"
+vim.o.ttyfast=true
+vim.o.lazyredraw=true
+
+-- Enable highlight groups
+vim.opt.termguicolors=true
+
+---- LAZY SETUP
+
+-- Install lazy.nvim if it's not already installed. 
+-- With this, a fresh neovim install can be set up with plugins in seconds
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -15,12 +37,16 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Plugin manifest
 require("lazy").setup({
-  {'vim-airline/vim-airline'},
-  {'vim-airline/vim-airline-themes'},
+-- Themes
+  {'famiu/feline.nvim'}, -- Fast statusbar plugin
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Lovely pastel theme
 
+-- Syntax
   {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', opts={highlight={enable=true}}},
 
+-- Quality of Life
   {'ibhagwan/fzf-lua'
   , dependencies = {'nvim-tree/nvim-web-devicons'}
   , config = function()
@@ -29,20 +55,9 @@ require("lazy").setup({
   },
   {'windwp/nvim-autopairs'},
   {'gelguy/wilder.nvim', build = ":UpdateRemotePlugins"},
-  {'oneslash/helix-nvim', version = "*"},
-  {'Mofiqul/dracula.nvim'},
+  {'nvim-tree/nvim-tree.lua', dependencies={'nvim-tree/nvim-web-devicons'}},
 
-  --
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-
-
-  {'nvim-tree/nvim-tree.lua'},
-  {'nvim-tree/nvim-web-devicons'},
-
-  {'NLKNguyen/papercolor-theme'},
-
-  {'pocco81/true-zen.nvim'},
-
+-- LSP
   {"neovim/nvim-lspconfig", -- REQUIRED: for native Neovim LSP integration
     lazy = false, -- REQUIRED: tell lazy.nvim to start this plugin at startup
     dependencies = {
@@ -74,61 +89,61 @@ require("lazy").setup({
   {'ranjithshegde/ccls.nvim'},
   {'nvim-lua/plenary.nvim'},
   {'joechrisellis/lsp-format-modifications.nvim'},
-}, opts)
-
-require('lspconfig').ccls.setup({
-    lsp = {
-        codelens = {
-            enable = true,
-            events = {"BufWritePost", "InsertLeave"}
-        }
-    }
 })
 
-require('lspconfig').ccls.setup(require('coq').lsp_ensure_capabilities())
+---- LSP
 
-vim.cmd([[
-set mouse=a
-set nohlsearch
-set number
-set hidden
-set expandtab
-set autoindent
-set smartindent
-set shiftwidth=2
-set tabstop=2
-set encoding=utf8
-set history=5000
-set cursorline
-let g:airline_theme='catppuccin'
-set formatoptions=tcr
-]])
+require('lspconfig').clangd.setup(require('coq').lsp_ensure_capabilities({
+  cmd = {
+    "clangd",
+    "--suggest-missing-includes",
+    '--query-driver=/usr/toolchains/arm-none-eabi/13/bin/arm-none-eabi-gcc',
+    '--query-driver=/usr/toolchains/arm-none-eabi/13/bin/arm-none-eabi-g++',
+  }
+}))
+--require('lspconfig').ccls.setup({
+--    lsp = {
+--        codelens = {
+--            enable = true,
+--            events = {"BufWritePost", "InsertLeave"}
+--        }
+--    },
+--    init_options = {
+--        compilationDatabaseDirectory = "build";
+--        index = {
+--           threads = 0;
+--        },
+--        clang = {
+--            excludeArgs = { "-frounding-math"} ;
+--        },
+--    },
+--})
 
---[[
-local Plug = vim.fn['plug#']
+--require('lspconfig').ccls.setup(require('coq').lsp_ensure_capabilities())
+--require('lspconfig').clangd.setup(require('coq').lsp_ensure_capabilities())
 
-vim.call('plug#begin')
-
-Plug('neoclide/coc.nvim', {branch = 'release'})
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
-Plug('junegunn/fzf', {['do'] = vim.fn['fzf#install']})
-Plug 'junegunn/fzf.vim'
-Plug 'windwp/nvim-autopairs'
-
-vim.call('plug#end')
---]]
---
---
+---- PLUGIN CONFIGURATION
 require('nvim-autopairs').setup{}
 
+require('feline').setup({})
+require('feline').winbar.setup({})
+
+require("catppuccin").setup({
+  flavour="mocha",
+  background = {
+    light = "latte",
+    dark = "mocha"
+  },
+  transparent_background = false,
+  show_end_of_buffer=true,
+  integrations = {
+    nvimtree = true,
+    treesitter = true,
+  },
+})
+
 local wilder = require('wilder')
-
-vim.g.mapleader=','
-
 wilder.setup({modes = {':', '/', '?'}})
-
 wilder.set_option('renderer', wilder.popupmenu_renderer(
   wilder.popupmenu_border_theme({
     highlighter = wilder.basic_highlighter(),
@@ -142,7 +157,6 @@ wilder.set_option('renderer', wilder.popupmenu_renderer(
     border = 'rounded',
   })
 ))
-
 wilder.set_option('pipeline', {
   wilder.branch(
     wilder.cmdline_pipeline({
@@ -165,91 +179,6 @@ wilder.set_option('pipeline', {
   ),
 })
 
---
-vim.keymap.set('n', '_', '<cmd>split<cr>')
-
-vim.keymap.set('n', '<space>f', '<cmd>FzfLua files<cr>')
-vim.keymap.set('n', '<space>g', '<cmd>FzfLua git_files<cr>')
-vim.keymap.set('n', '<space>b', '<cmd>FzfLua buffers<cr>')
-
-vim.keymap.set('n', '<space>bk', '<cmd>lua require\'dap\'.toggle_breakpoint()<cr>')
-
-
--- nnoremap <silent> gd <Plug>(coc-definition)
--- nnoremap <silent> gy <Plug>(coc-type-definition)
--- nnoremap <silent> gr <Plug>(coc-references)
--- nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
--- nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
-
-
---nmap <leader>do <Plug>(coc-codeaction)
---
---nmap <leader>rn <Plug>(coc-rename)
-
-vim.cmd([[
-nmap \| <cmd>vsplit<cr>
-
-nnoremap <silent> <leader>gy :TZAtaraxis<CR>
-
-nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
-nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
-
-command! BufOnly execute '%bdelete|edit#|bdelete#'
-
-nnoremap <silent> <space>o :BufOnly<CR>
-
-let g:airline#extensions#tabline#enabled = 1
-
-let g:airline_powerline_fonts = 1
-
-if !exists('g:airline_symbols')
-let g:airline_symbols = {}
-endif
-
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.colnr = ':'
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ' '
-let g:airline_symbols.maxlinenr = ' '
-
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-nnoremap gn <cmd>bnext<cr>
-nnoremap gp <cmd>bprev<cr>
-
-nnoremap <space>t <cmd>NvimTreeToggle<cr>
-]])
-
---[[
-
-inoremap <silent><expr> <Tab>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <silent><expr> <c-space> coc#refresh()
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
---]]
-
---]]
---
----- set termguicolors to enable highlight groups
-vim.opt.termguicolors = true
-
--- empty setup using defaults
-require("nvim-tree").setup()
-
--- OR setup with some options
 require("nvim-tree").setup({
   sort = {
     sorter = "case_sensitive",
@@ -267,23 +196,42 @@ require("nvim-tree").setup({
 
 require("nvim-treesitter.install").prefer_git = true
 
-require("catppuccin").setup({
-  flavour="mocha",
-  background = {
-    light = "latte",
-    dark = "mocha"
-  },
-  transparent_background = false,
-  show_end_of_buffer=true,
-  integrations = {
-    nvimtree = true,
-    treesitter = true,
-  },
-})
+---- KEYBINDS
+vim.g.mapleader=','
+
+-- Splitting 
+vim.keymap.set('n', '_', '<cmd>split<cr>')
+vim.keymap.set('n', [[|]], '<cmd>vsplit<cr>') -- Doesn't like | appearing in a normal string
+
+-- nvim-tree
+vim.keymap.set('n', '<Space>t', '<cmd>NvimTreeToggle<cr>')
+
+-- Quick Buffer Switching
+vim.keymap.set('n', 'gn', '<cmd>bnext<cr>')
+vim.keymap.set('n', 'gp', '<cmd>bprev<cr>')
+
+-- FzfLua
+vim.keymap.set('n', '<space>f', '<cmd>FzfLua files<cr>')
+vim.keymap.set('n', '<space>g', '<cmd>FzfLua git_files<cr>')
+vim.keymap.set('n', '<space>b', '<cmd>FzfLua buffers<cr>')
+
+-- POST-PLUGIN CONFIGURATIONS
 
 vim.cmd.colorscheme "catppuccin"
 
+-- Doxygen highlighting in C/C++
 vim.api.nvim_create_autocmd({"BufEnter"}, {
   pattern = {"*.c", "*.h", "*.cc", "*.cpp", "*.hh", "*.hpp"},
   command = "set syntax=cpp.doxygen"
 })
+
+-- C/C++ Specific
+
+vim.api.nvim_create_autocmd({"BufEnter"}, {
+  pattern = {"*.c", "*.h", "*.cc", "*.cpp", "*.hh", "*.hpp"},
+  group = vim.api.nvim_create_augroup('c_only_keymap', { clear = true }),
+  callback = function()
+    vim.keymap.set('n', 'gh', '<cmd>ClangdSwitchSourceHeader<CR>', {silent = true})
+  end
+})
+

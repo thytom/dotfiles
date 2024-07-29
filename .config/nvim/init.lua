@@ -1,3 +1,5 @@
+vim.g.mapleader=',' -- Must be defined at the top
+
 -- Required to make nvim-tree the default
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -47,15 +49,11 @@ require("lazy").setup({
   {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', opts={highlight={enable=true}}},
 
 -- Quality of Life
-  {'ibhagwan/fzf-lua'
-  , dependencies = {'nvim-tree/nvim-web-devicons'}
-  , config = function()
-    require("fzf-lua").setup({})
-  end
-  },
+  {'nvim-telescope/telescope.nvim', dependencies={'nvim-lua/plenary.nvim'}},
   {'windwp/nvim-autopairs'},
   {'gelguy/wilder.nvim', build = ":UpdateRemotePlugins"},
   {'nvim-tree/nvim-tree.lua', dependencies={'nvim-tree/nvim-web-devicons'}},
+  {'tanvirtin/vgit.nvim', dependenceis={'nvim-lua/plenary.nvim'}}, -- Git visualising
 
 -- LSP
   {"neovim/nvim-lspconfig", -- REQUIRED: for native Neovim LSP integration
@@ -91,7 +89,7 @@ require("lazy").setup({
   {'joechrisellis/lsp-format-modifications.nvim'},
 })
 
----- LSP
+require('lspconfig').pyright.setup({})
 
 require('lspconfig').clangd.setup(require('coq').lsp_ensure_capabilities({
   cmd = {
@@ -99,6 +97,8 @@ require('lspconfig').clangd.setup(require('coq').lsp_ensure_capabilities({
     "--suggest-missing-includes",
     '--query-driver=/usr/toolchains/arm-none-eabi/13/bin/arm-none-eabi-gcc',
     '--query-driver=/usr/toolchains/arm-none-eabi/13/bin/arm-none-eabi-g++',
+    '--query-driver=/usr/bin/arm-none-eabi-gcc',
+    '--query-driver=/usr/bin/arm-none-eabi-g++',
   }
 }))
 --require('lspconfig').ccls.setup({
@@ -196,24 +196,50 @@ require("nvim-tree").setup({
 
 require("nvim-treesitter.install").prefer_git = true
 
+vim.o.updatetime = 300
+vim.o.incsearch = false
+vim.wo.signcolumn = 'yes'
+
+require('vgit').setup({
+      keymaps = {
+        ['n <C-k>'] = function() require('vgit').hunk_up() end,
+        ['n <C-j>'] = function() require('vgit').hunk_down() end,
+        ['n <leader>gs'] = function() require('vgit').buffer_hunk_stage() end,
+        ['n <leader>gr'] = function() require('vgit').buffer_hunk_reset() end,
+        ['n <leader>gp'] = function() require('vgit').buffer_hunk_preview() end,
+        ['n <leader>gb'] = function() require('vgit').buffer_blame_preview() end,
+        ['n <leader>gf'] = function() require('vgit').buffer_diff_preview() end,
+        ['n <leader>gh'] = function() require('vgit').buffer_history_preview() end,
+        ['n <leader>gu'] = function() require('vgit').buffer_reset() end,
+        ['n <leader>gg'] = function() require('vgit').buffer_gutter_blame_preview() end,
+        ['n <leader>glu'] = function() require('vgit').buffer_hunks_preview() end,
+        ['n <leader>gls'] = function() require('vgit').project_hunks_staged_preview() end,
+        ['n <leader>gd'] = function() require('vgit').project_diff_preview() end,
+        ['n <leader>gq'] = function() require('vgit').project_hunks_qf() end,
+        ['n <leader>gx'] = function() require('vgit').toggle_diff_preference() end,
+        ['n <leader>gc'] = function() require('vgit').project_commit_preview() end,
+      }, }
+);
+
 ---- KEYBINDS
-vim.g.mapleader=','
 
 -- Splitting 
 vim.keymap.set('n', '_', '<cmd>split<cr>')
 vim.keymap.set('n', [[|]], '<cmd>vsplit<cr>') -- Doesn't like | appearing in a normal string
 
 -- nvim-tree
-vim.keymap.set('n', '<Space>t', '<cmd>NvimTreeToggle<cr>')
+vim.keymap.set('n', '<Space>t', '<cmd>NvimTreeFocus<cr>')
 
 -- Quick Buffer Switching
 vim.keymap.set('n', 'gn', '<cmd>bnext<cr>')
 vim.keymap.set('n', 'gp', '<cmd>bprev<cr>')
 
--- FzfLua
-vim.keymap.set('n', '<space>f', '<cmd>FzfLua files<cr>')
-vim.keymap.set('n', '<space>g', '<cmd>FzfLua git_files<cr>')
-vim.keymap.set('n', '<space>b', '<cmd>FzfLua buffers<cr>')
+-- Telescope
+vim.keymap.set('n', '<space>f', '<cmd>Telescope find_files<cr>')
+vim.keymap.set('n', '<space>g', '<cmd>Telescope git_files<cr>')
+vim.keymap.set('n', '<space>b', '<cmd>Telescope buffers<cr>')
+vim.keymap.set('n', '<space>r', '<cmd>Telescope live_grep<cr>')
+vim.keymap.set('n', '<space>d', '<cmd>Telescope diagnostics<cr>')
 
 -- POST-PLUGIN CONFIGURATIONS
 
@@ -235,3 +261,7 @@ vim.api.nvim_create_autocmd({"BufEnter"}, {
   end
 })
 
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, {noremap = true})
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {noremap = true})
+vim.keymap.set('n', 'gs', vim.lsp.buf.document_symbol, {noremap = true})
+vim.keymap.set('n', '<ctrl>k', vim.lsp.buf.hover, {noremap = true})

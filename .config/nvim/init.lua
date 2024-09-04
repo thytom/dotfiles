@@ -19,6 +19,9 @@ vim.o.formatoptions="tcr"
 vim.o.ttyfast=true
 vim.o.lazyredraw=true
 
+-- Nicer indentation for case statements
+vim.o.cinoptions="l1"
+
 -- Enable highlight groups
 vim.opt.termguicolors=true
 
@@ -54,6 +57,8 @@ require("lazy").setup({
   {'gelguy/wilder.nvim', build = ":UpdateRemotePlugins"},
   {'nvim-tree/nvim-tree.lua', dependencies={'nvim-tree/nvim-web-devicons'}},
   {'tanvirtin/vgit.nvim', dependenceis={'nvim-lua/plenary.nvim'}}, -- Git visualising
+  {'voldikss/vim-floaterm'}, -- Floating terminals
+
 
 -- LSP
   {"neovim/nvim-lspconfig", -- REQUIRED: for native Neovim LSP integration
@@ -230,6 +235,9 @@ vim.keymap.set('n', [[|]], '<cmd>vsplit<cr>') -- Doesn't like | appearing in a n
 -- nvim-tree
 vim.keymap.set('n', '<Space>t', '<cmd>NvimTreeFocus<cr>')
 
+-- voldikss/vim-floaterm
+vim.keymap.set('n', '<leader>t', '<cmd>FloatermToggle<cr>')
+
 -- Quick Buffer Switching
 vim.keymap.set('n', 'gn', '<cmd>bnext<cr>')
 vim.keymap.set('n', 'gp', '<cmd>bprev<cr>')
@@ -240,6 +248,7 @@ vim.keymap.set('n', '<space>g', '<cmd>Telescope git_files<cr>')
 vim.keymap.set('n', '<space>b', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<space>r', '<cmd>Telescope live_grep<cr>')
 vim.keymap.set('n', '<space>d', '<cmd>Telescope diagnostics<cr>')
+vim.keymap.set('n', '<space>s', '<cmd>Telescope lsp_document_symbols<cr>')
 
 -- POST-PLUGIN CONFIGURATIONS
 

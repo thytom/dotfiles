@@ -58,7 +58,17 @@ require("lazy").setup({
   {'nvim-tree/nvim-tree.lua', dependencies={'nvim-tree/nvim-web-devicons'}},
   {'tanvirtin/vgit.nvim', dependenceis={'nvim-lua/plenary.nvim'}}, -- Git visualising
   {'voldikss/vim-floaterm'}, -- Floating terminals
-
+  { -- Code outlining
+    "hedyhli/outline.nvim",
+    lazy = true,
+    cmd = { "Outline", "OutlineOpen" },
+    keys = { -- Example mapping to toggle outline
+      { "<space>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+    },
+    opts = {
+      -- Your setup opts here
+    },
+  },
 
 -- LSP
   {"neovim/nvim-lspconfig", -- REQUIRED: for native Neovim LSP integration
@@ -106,6 +116,10 @@ require('lspconfig').clangd.setup(require('coq').lsp_ensure_capabilities({
     '--query-driver=/usr/bin/arm-none-eabi-g++',
   }
 }))
+
+require('lspconfig').pylsp.setup(require('coq').lsp_ensure_capabilities({}))
+
+
 --require('lspconfig').ccls.setup({
 --    lsp = {
 --        codelens = {
@@ -145,6 +159,13 @@ require("catppuccin").setup({
     nvimtree = true,
     treesitter = true,
   },
+  highlight_overrides =  {
+    mocha = function(mocha)
+      return {
+        Comment = {fg = mocha.lavender}
+      }
+    end
+  }
 })
 
 local wilder = require('wilder')

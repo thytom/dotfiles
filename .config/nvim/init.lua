@@ -69,6 +69,7 @@ require("lazy").setup({
       -- Your setup opts here
     },
   },
+  {'stevearc/conform.nvim', opts = {}, event = {BufEnter}}, -- Lang-specific formatters
 
 -- LSP
   {"neovim/nvim-lspconfig", -- REQUIRED: for native Neovim LSP integration
@@ -104,8 +105,6 @@ require("lazy").setup({
   {'joechrisellis/lsp-format-modifications.nvim'},
 })
 
-require('lspconfig').pyright.setup({})
-
 require('lspconfig').clangd.setup(require('coq').lsp_ensure_capabilities({
   cmd = {
     "clangd",
@@ -117,8 +116,30 @@ require('lspconfig').clangd.setup(require('coq').lsp_ensure_capabilities({
   }
 }))
 
-require('lspconfig').pylsp.setup(require('coq').lsp_ensure_capabilities({}))
-
+require('lspconfig').pylsp.setup(require('coq').lsp_ensure_capabilities({
+  on_attach=on_attach,
+  filetypes={'python'},
+  settings = {
+    configurationSources = {"flake8"},
+    formatCommand = {"ruff"},
+    pylsp = {
+      plugins = {
+        pylint = {args = {'--ignore=F405,E501,E231', '-'}, enabled=true, debounce=200},
+        pycodestyle={
+          enabled=false,
+        },
+        flake8 = {
+          enabled=true,
+          extendIgnore = {'F405'},
+          maxLineLength=120,
+        },
+        pyflakes={
+          enabled=false,
+        },
+      }
+    }
+  }
+}))
 
 --require('lspconfig').ccls.setup({
 --    lsp = {
@@ -146,6 +167,23 @@ require('nvim-autopairs').setup{}
 
 require('feline').setup({})
 require('feline').winbar.setup({})
+
+require("conform").setup({
+  formatters_by_ft = {
+    python = { "isort" },
+  },
+})
+
+vim.keymap.set("", "<leader>mp", function()
+  require("conform").format({ async = true }, function(err)
+    if not err then
+      local mode = vim.api.nvim_get_mode().mode
+      if vim.startswith(string.lower(mode), "v") then
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+      end
+    end
+  end)
+end, { desc = "Format code" })
 
 require("catppuccin").setup({
   flavour="mocha",

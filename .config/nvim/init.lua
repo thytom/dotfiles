@@ -57,6 +57,7 @@ require("lazy").setup({
   {'gelguy/wilder.nvim', build = ":UpdateRemotePlugins"},
   {'nvim-tree/nvim-tree.lua', dependencies={'nvim-tree/nvim-web-devicons'}},
   {'tanvirtin/vgit.nvim', dependenceis={'nvim-lua/plenary.nvim'}}, -- Git visualising
+  {'tpope/vim-fugitive'}, -- Nice conflict resolution
   {'voldikss/vim-floaterm'}, -- Floating terminals
   { -- Code outlining
     "hedyhli/outline.nvim",
@@ -300,6 +301,11 @@ vim.keymap.set('n', '<leader>t', '<cmd>FloatermToggle<cr>')
 -- Quick Buffer Switching
 vim.keymap.set('n', 'gn', '<cmd>bnext<cr>')
 vim.keymap.set('n', 'gp', '<cmd>bprev<cr>')
+
+-- fugitive
+vim.keymap.set('n', '<leader>cfl', '<cmd>Gvdiffsplit!<cr>')
+vim.keymap.set('n', 'gdh', '<cmd>diffget //2<cr>')
+vim.keymap.set('n', 'gdl', '<cmd>diffget //3<cr>')
 
 -- Telescope
 vim.keymap.set('n', '<space>f', '<cmd>Telescope find_files<cr>')

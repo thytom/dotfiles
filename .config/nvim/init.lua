@@ -285,6 +285,9 @@ require('vgit').setup({
         ['n <leader>gc'] = function() require('vgit').project_commit_preview() end,
       }, }
 );
+vim.o.updatetime = 300
+vim.o.incsearch = false
+vim.wo.signcolumn = 'yes'
 
 ---- KEYBINDS
 

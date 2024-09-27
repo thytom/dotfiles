@@ -1,0 +1,7 @@
+# For EGC testing
+snippet event
+  ensure(lorawan.event_message_received({
+    'device_set': ${1: device_set_bits},
+    'device_unset': ${2: device_unset_bits},
+    'gate_state': ${3: gate_state}
+    })).within('${4: duration}')

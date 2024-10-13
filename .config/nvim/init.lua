@@ -1,31 +1,6 @@
 vim.g.mapleader=',' -- Must be defined at the top
 
--- Required to make nvim-tree the default
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
----- NEOVIM GENERAL CONFIGURATION
-vim.o.mouse="a"
-vim.o.hlsearch=false
-vim.o.number=true
-vim.o.expandtab=true
-vim.o.smartindent=true
-vim.o.shiftwidth=2
-vim.o.tabstop=2
-vim.o.encoding="utf8"
-vim.o.history=5000
-vim.o.cursorline=true
-vim.o.formatoptions="tcr"
-vim.o.ttyfast=true
-vim.o.lazyredraw=true
-
--- Nicer indentation for case statements
-vim.o.cinoptions="l1"
-
--- Enable highlight groups
-vim.opt.termguicolors=true
-
----- LAZY SETUP
+require "options" -- vim.o configuration
 
 -- Install lazy.nvim if it's not already installed. 
 -- With this, a fresh neovim install can be set up with plugins in seconds
@@ -42,132 +17,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Plugin manifest
-require("lazy").setup({
--- Themes
-  {'famiu/feline.nvim'}, -- Fast statusbar plugin
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Lovely pastel theme
+require "plugins"
 
--- Syntax
-  {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', opts={highlight={enable=true}}},
-
--- Quality of Life
-  {'nvim-telescope/telescope.nvim', dependencies={'nvim-lua/plenary.nvim'}},
-  {'windwp/nvim-autopairs'},
-  {'gelguy/wilder.nvim', build = ":UpdateRemotePlugins"},
-  {'nvim-tree/nvim-tree.lua', dependencies={'nvim-tree/nvim-web-devicons'}},
-  {'tanvirtin/vgit.nvim', dependenceis={'nvim-lua/plenary.nvim'}}, -- Git visualising
-  {'tpope/vim-fugitive'}, -- Nice conflict resolution
-  {'voldikss/vim-floaterm'}, -- Floating terminals
-  { -- Code outlining
-    "hedyhli/outline.nvim",
-    lazy = true,
-    cmd = { "Outline", "OutlineOpen" },
-    keys = { -- Example mapping to toggle outline
-      { "<space>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
-    },
-    opts = {
-      -- Your setup opts here
-    },
-  },
-  {'stevearc/conform.nvim', opts = {}, event = {BufEnter}}, -- Lang-specific formatters
-
--- LSP
-  {"neovim/nvim-lspconfig", -- REQUIRED: for native Neovim LSP integration
-    lazy = false, -- REQUIRED: tell lazy.nvim to start this plugin at startup
-    dependencies = {
-      -- main one
-      { "ms-jpq/coq_nvim", branch = "coq" },
-
-      -- 9000+ Snippets
-      { "ms-jpq/coq.artifacts", branch = "artifacts" },
-
-      -- lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
-      -- Need to **configure separately**
-      { 'ms-jpq/coq.thirdparty', branch = "3p" }
-      -- - shell repl
-      -- - nvim lua api
-      -- - scientific calculator
-      -- - comment banner
-      -- - etc
-    },
-    init = function()
-      vim.g.coq_settings = {
-          auto_start = true, -- if you want to start COQ at startup
-          -- Your COQ settings here
-      }
-    end,
-    config = function()
-      -- Your LSP settings here
-    end,
-  },
-  {'ranjithshegde/ccls.nvim'},
-  {'nvim-lua/plenary.nvim'},
-  {'joechrisellis/lsp-format-modifications.nvim'},
-})
-
-require('lspconfig').clangd.setup(require('coq').lsp_ensure_capabilities({
-  cmd = {
-    "clangd",
-    "--suggest-missing-includes",
-    '--query-driver=/usr/toolchains/arm-none-eabi/13/bin/arm-none-eabi-gcc',
-    '--query-driver=/usr/toolchains/arm-none-eabi/13/bin/arm-none-eabi-g++',
-    '--query-driver=/usr/bin/arm-none-eabi-gcc',
-    '--query-driver=/usr/bin/arm-none-eabi-g++',
-  }
-}))
-
-require('lspconfig').pylsp.setup(require('coq').lsp_ensure_capabilities({
-  on_attach=on_attach,
-  filetypes={'python'},
-  settings = {
-    configurationSources = {"flake8"},
-    formatCommand = {"ruff"},
-    pylsp = {
-      plugins = {
-        pylint = {args = {'--ignore=F405,E501,E231', '-'}, enabled=true, debounce=200},
-        pycodestyle={
-          enabled=false,
-        },
-        flake8 = {
-          enabled=true,
-          extendIgnore = {'F405'},
-          maxLineLength=120,
-        },
-        pyflakes={
-          enabled=false,
-        },
-      }
-    }
-  }
-}))
-
---require('lspconfig').ccls.setup({
---    lsp = {
---        codelens = {
---            enable = true,
---            events = {"BufWritePost", "InsertLeave"}
---        }
---    },
---    init_options = {
---        compilationDatabaseDirectory = "build";
---        index = {
---           threads = 0;
---        },
---        clang = {
---            excludeArgs = { "-frounding-math"} ;
---        },
---    },
---})
-
---require('lspconfig').ccls.setup(require('coq').lsp_ensure_capabilities())
---require('lspconfig').clangd.setup(require('coq').lsp_ensure_capabilities())
+require "config/lsp-setup"
 
 ---- PLUGIN CONFIGURATION
 require('nvim-autopairs').setup{}
-
-require('feline').setup({})
-require('feline').winbar.setup({})
 
 require("conform").setup({
   formatters_by_ft = {
@@ -185,27 +40,6 @@ vim.keymap.set("", "<leader>mp", function()
     end
   end)
 end, { desc = "Format code" })
-
-require("catppuccin").setup({
-  flavour="mocha",
-  background = {
-    light = "latte",
-    dark = "mocha"
-  },
-  transparent_background = false,
-  show_end_of_buffer=true,
-  integrations = {
-    nvimtree = true,
-    treesitter = true,
-  },
-  highlight_overrides =  {
-    mocha = function(mocha)
-      return {
-        Comment = {fg = mocha.lavender}
-      }
-    end
-  }
-})
 
 local wilder = require('wilder')
 wilder.setup({modes = {':', '/', '?'}})
@@ -261,10 +95,6 @@ require("nvim-tree").setup({
 
 require("nvim-treesitter.install").prefer_git = true
 
-vim.o.updatetime = 300
-vim.o.incsearch = false
-vim.wo.signcolumn = 'yes'
-
 require('vgit').setup({
       keymaps = {
         ['n <C-k>'] = function() require('vgit').hunk_up() end,
@@ -285,60 +115,13 @@ require('vgit').setup({
         ['n <leader>gc'] = function() require('vgit').project_commit_preview() end,
       }, }
 );
-vim.o.updatetime = 300
-vim.o.incsearch = false
-vim.wo.signcolumn = 'yes'
 
----- KEYBINDS
-
--- Splitting 
-vim.keymap.set('n', '_', '<cmd>split<cr>')
-vim.keymap.set('n', [[|]], '<cmd>vsplit<cr>') -- Doesn't like | appearing in a normal string
-
--- nvim-tree
-vim.keymap.set('n', '<Space>t', '<cmd>NvimTreeFocus<cr>')
-
--- voldikss/vim-floaterm
-vim.keymap.set('n', '<leader>t', '<cmd>FloatermToggle<cr>')
-
--- Quick Buffer Switching
-vim.keymap.set('n', 'gn', '<cmd>bnext<cr>')
-vim.keymap.set('n', 'gp', '<cmd>bprev<cr>')
-
--- fugitive
-vim.keymap.set('n', '<leader>cfl', '<cmd>Gvdiffsplit!<cr>')
-vim.keymap.set('n', 'gdh', '<cmd>diffget //2<cr>')
-vim.keymap.set('n', 'gdl', '<cmd>diffget //3<cr>')
-
--- Telescope
-vim.keymap.set('n', '<space>f', '<cmd>Telescope find_files<cr>')
-vim.keymap.set('n', '<space>g', '<cmd>Telescope git_files<cr>')
-vim.keymap.set('n', '<space>b', '<cmd>Telescope buffers<cr>')
-vim.keymap.set('n', '<space>r', '<cmd>Telescope live_grep<cr>')
-vim.keymap.set('n', '<space>d', '<cmd>Telescope diagnostics<cr>')
-vim.keymap.set('n', '<space>s', '<cmd>Telescope lsp_document_symbols<cr>')
+require "keybinds"
 
 -- POST-PLUGIN CONFIGURATIONS
-
-vim.cmd.colorscheme "catppuccin"
 
 -- Doxygen highlighting in C/C++
 vim.api.nvim_create_autocmd({"BufEnter"}, {
   pattern = {"*.c", "*.h", "*.cc", "*.cpp", "*.hh", "*.hpp"},
   command = "set syntax=cpp.doxygen"
 })
-
--- C/C++ Specific
-
-vim.api.nvim_create_autocmd({"BufEnter"}, {
-  pattern = {"*.c", "*.h", "*.cc", "*.cpp", "*.hh", "*.hpp"},
-  group = vim.api.nvim_create_augroup('c_only_keymap', { clear = true }),
-  callback = function()
-    vim.keymap.set('n', 'gh', '<cmd>ClangdSwitchSourceHeader<CR>', {silent = true})
-  end
-})
-
-vim.keymap.set('n', 'gr', vim.lsp.buf.references, {noremap = true})
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {noremap = true})
-vim.keymap.set('n', 'gs', vim.lsp.buf.document_symbol, {noremap = true})
-vim.keymap.set('n', '<ctrl>k', vim.lsp.buf.hover, {noremap = true})

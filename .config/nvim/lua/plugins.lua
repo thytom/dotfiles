@@ -1,5 +1,7 @@
 -- Plugin manifest
 require("lazy").setup({
+  -- Pull in plugins from custom files
+  {import = "plugin.lang"},
 -- Themes
   {'EdenEast/nightfox.nvim', 
     lazy=false,

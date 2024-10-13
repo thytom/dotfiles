@@ -1,4 +1,5 @@
 vim.g.mapleader=',' -- Must be defined at the top
+vim.g.maplocalleader=',' -- Must be defined at the top
 
 require "options" -- vim.o configuration
 

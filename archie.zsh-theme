@@ -1,4 +1,4 @@
-local cmd_indicator="\$ "
+local cmd_indicator="λ "
 local ret_status="%(?:%{$fg_bold[white]%}${cmd_indicator}%{$reset_color%}:%{$fg_bold[red]%}${cmd_indicator}%{$reset_color%}"
 #local hostname="%{$fg_bold[green]%}$USER@$HOST%{$reset_color%}:"
 local hostname="%{$fg_bold[yellow]%}$HOST%{$reset_color%}:"

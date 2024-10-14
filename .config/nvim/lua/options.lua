@@ -16,6 +16,7 @@ vim.o.cursorline=true
 vim.o.formatoptions="tcr"
 vim.o.ttyfast=true
 vim.o.lazyredraw=true
+vim.o.showtabline = 2
 
 -- Nicer indentation for case statements
 vim.o.cinoptions="l1"

@@ -1,12 +1,24 @@
 -- Plugin manifest
 require("lazy").setup({
   -- Pull in plugins from custom files
+  {import = "plugin"},
   {import = "plugin.lang"},
 -- Themes
   {'EdenEast/nightfox.nvim', 
     lazy=false,
     init = function()
       vim.cmd.colorscheme "carbonfox"
+    end,
+    config = function(opts)
+      require('nightfox').setup({
+        specs = {
+          all = {
+            syntax = {
+              comment = "white.dim"
+            }
+          }
+        }
+      })
     end
   },
   -- { "catppuccin/nvim", name = "catppuccin", priority = 1000 

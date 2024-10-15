@@ -4,47 +4,50 @@ require("lazy").setup({
   {import = "plugin"},
   {import = "plugin.lang"},
 -- Themes
-  {'EdenEast/nightfox.nvim', 
-    lazy=false,
+  -- {'EdenEast/nightfox.nvim', 
+  --   lazy=false,
+  --   init = function()
+  --     vim.cmd.colorscheme "carbonfox"
+  --   end,
+  --   config = function(opts)
+  --     require('nightfox').setup({
+  --       specs = {
+  --         all = {
+  --           syntax = {
+  --             comment = "white.dim"
+  --           }
+  --         }
+  --       }
+  --     })
+  --   end
+  -- },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000,
     init = function()
-      vim.cmd.colorscheme "carbonfox"
+      vim.cmd.colorscheme "catppuccin"
     end,
     config = function(opts)
-      require('nightfox').setup({
-        specs = {
-          all = {
-            syntax = {
-              comment = "white.dim"
+      require('catppuccin').setup({
+        flavour="mocha",
+        background = {
+          light = "latte",
+          dark = "mocha"
+        },
+        transparent_background = false,
+        show_end_of_buffer=true,
+        integrations = {
+          nvimtree = true,
+          treesitter = true,
+        },
+        highlight_overrides =  {
+          mocha = function(mocha)
+            return {
+              Comment = {fg = mocha.lavender}
             }
-          }
+          end
         }
       })
     end
-  },
-  -- { "catppuccin/nvim", name = "catppuccin", priority = 1000 
-  --   config = function(opts) {
-  --     require('catppuccin').setup({
-  --       flavour="mocha",
-  --       background = {
-  --         light = "latte",
-  --         dark = "mocha"
-  --       },
-  --       transparent_background = false,
-  --       show_end_of_buffer=true,
-  --       integrations = {
-  --         nvimtree = true,
-  --         treesitter = true,
-  --       },
-  --       highlight_overrides =  {
-  --         mocha = function(mocha)
-  --           return {
-  --             Comment = {fg = mocha.lavender}
-  --           }
-  --         end
-  --       }
-  --     })
-  --   }
-  -- }, -- Lovely pastel theme
+  }, -- Lovely pastel theme
 
 -- UI
   {'freddiehaddad/feline.nvim',

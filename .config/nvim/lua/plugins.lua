@@ -3,51 +3,51 @@ require("lazy").setup({
   -- Pull in plugins from custom files
   {import = "plugin"},
   {import = "plugin.lang"},
--- Themes
-  -- {'EdenEast/nightfox.nvim', 
-  --   lazy=false,
-  --   init = function()
-  --     vim.cmd.colorscheme "carbonfox"
-  --   end,
-  --   config = function(opts)
-  --     require('nightfox').setup({
-  --       specs = {
-  --         all = {
-  --           syntax = {
-  --             comment = "white.dim"
-  --           }
-  --         }
-  --       }
-  --     })
-  --   end
-  -- },
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000,
+--Themes
+  {'EdenEast/nightfox.nvim', 
+    lazy=false,
     init = function()
-      vim.cmd.colorscheme "catppuccin"
+      vim.cmd.colorscheme "carbonfox"
     end,
     config = function(opts)
-      require('catppuccin').setup({
-        flavour="mocha",
-        background = {
-          light = "latte",
-          dark = "mocha"
-        },
-        transparent_background = false,
-        show_end_of_buffer=true,
-        integrations = {
-          nvimtree = true,
-          treesitter = true,
-        },
-        highlight_overrides =  {
-          mocha = function(mocha)
-            return {
-              Comment = {fg = mocha.lavender}
+      require('nightfox').setup({
+        specs = {
+          all = {
+            syntax = {
+              comment = "white.dim"
             }
-          end
+          }
         }
       })
     end
-  }, -- Lovely pastel theme
+  },
+  -- { "catppuccin/nvim", name = "catppuccin", priority = 1000,
+  --   init = function()
+  --     vim.cmd.colorscheme "catppuccin"
+  --   end,
+  --   config = function(opts)
+  --     require('catppuccin').setup({
+  --       flavour="mocha",
+  --       background = {
+  --         light = "latte",
+  --         dark = "mocha"
+  --       },
+  --       transparent_background = false,
+  --       show_end_of_buffer=true,
+  --       integrations = {
+  --         nvimtree = true,
+  --         treesitter = true,
+  --       },
+  --       highlight_overrides =  {
+  --         mocha = function(mocha)
+  --           return {
+  --             Comment = {fg = mocha.lavender}
+  --           }
+  --         end
+  --       }
+  --     })
+  --   end
+  -- }, -- Lovely pastel theme
 
 -- UI
   {'freddiehaddad/feline.nvim',

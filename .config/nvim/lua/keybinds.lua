@@ -31,6 +31,8 @@ vim.keymap.set('n', '<space>b', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<space>r', '<cmd>Telescope live_grep<cr>')
 vim.keymap.set('n', '<space>d', '<cmd>Telescope diagnostics<cr>')
 vim.keymap.set('n', '<space>s', '<cmd>Telescope lsp_document_symbols<cr>')
+vim.keymap.set('n', '<space><space>', '<cmd>Telescope<cr>')
+vim.keymap.set('n', '<space>l', '<cmd>TodoTelescope<cr>')
 
 -- Tabby
 vim.keymap.set('n', '<shift><tab>', '<cmd>Tabby jump_to_tab<cr>')
@@ -62,3 +64,9 @@ vim.keymap.set('n', 'gr', vim.lsp.buf.references, {noremap = true})
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {noremap = true})
 vim.keymap.set('n', 'gs', vim.lsp.buf.document_symbol, {noremap = true})
 vim.keymap.set('n', '<ctrl>k', vim.lsp.buf.hover, {noremap = true})
+vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename)
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
+
+-- Toggle Whitespace
+vim.keymap.set("n", "<leader>l", "<cmd>set list!<cr>")
+

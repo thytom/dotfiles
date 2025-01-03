@@ -61,10 +61,28 @@ require("lazy").setup({
   },
 
 -- Syntax
-  {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', opts={highlight={enable=true}}},
+  {'nvim-treesitter/nvim-treesitter', 
+    build = ':TSUpdate', 
+    opts={highlight={enable=true}},
+    config = function()
+      require('nvim-treesitter.configs').setup({
+        ensure_installed = {
+          "c",
+          "cpp",
+          "bash",
+          "python",
+          "clojure"
+        },
+        highlight = {
+          enable = true
+        },
+      })
+    end
+
+  },
 
 -- Quality of Life
-  {'nvim-telescope/telescope.nvim', dependencies={'nvim-lua/plenary.nvim'}},
+  {'nvim-telescope/telescope.nvim', dependencies={'nvim-lua/plenary.nvim', 'stevearc/conform.nvim'}},
   {'windwp/nvim-autopairs'},
   {'gelguy/wilder.nvim', build = ":UpdateRemotePlugins"},
   {'nvim-tree/nvim-tree.lua', 
@@ -79,18 +97,7 @@ require("lazy").setup({
   {'tanvirtin/vgit.nvim', dependenceis={'nvim-lua/plenary.nvim'}}, -- Git visualising
   {'tpope/vim-fugitive'}, -- Nice conflict resolution
   {'voldikss/vim-floaterm'}, -- Floating terminals
-  { -- Code outlining
-    "hedyhli/outline.nvim",
-    lazy = true,
-    cmd = { "Outline", "OutlineOpen" },
-    keys = { -- Example mapping to toggle outline
-      { "<space>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
-    },
-    opts = {
-      -- Your setup opts here
-    },
-  },
-  {'stevearc/conform.nvim', opts = {}, event = {BufEnter}}, -- Lang-specific formatters
+  {'artemave/workspace-diagnostics.nvim'}, -- Allow workspace diagnostics for LSP
 
 -- LSP
   {"neovim/nvim-lspconfig", -- REQUIRED: for native Neovim LSP integration

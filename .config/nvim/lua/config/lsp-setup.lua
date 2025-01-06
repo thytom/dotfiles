@@ -40,3 +40,5 @@ require('lspconfig').pylsp.setup(require('coq').lsp_ensure_capabilities({
     }
   }
 }))
+
+require('lspconfig').clojure_lsp.setup(require('coq').lsp_ensure_capabilities({}))

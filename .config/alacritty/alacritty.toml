@@ -60,14 +60,14 @@ cursor = "CellForeground"
 text = "CellBackground"
 
 [font]
-size = 9
+size = 11
 
 [font.glyph_offset]
 x = 0
 y = -1
 
 [font.normal]
-family = "Go Mono"
+family = "GoMono Nerd Font"
 style = "Regular"
 
 [window]

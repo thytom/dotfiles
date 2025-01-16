@@ -22,9 +22,9 @@
         ];
 
       # Install Fonts
-      fonts.packages = 
-	[ (pkgs.nerdfonts.override { fonts = [ "GoMono" ]; })
-      	];
+	#      fonts.packages = 
+	# [ (pkgs.nerdfonts.override { fonts = [ "GoMono" ]; })
+	#      	];
 
 	system.activationScripts.applications.text = let
 	  env = pkgs.buildEnv {

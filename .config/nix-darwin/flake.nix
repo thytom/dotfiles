@@ -17,14 +17,9 @@
 	  pkgs.neovim
 	  pkgs.tmux
 	  pkgs.mkalias
-
 	  pkgs.alacritty
+      pkgs.nerd-fonts.go-mono
         ];
-
-      # Install Fonts
-	#      fonts.packages = 
-	# [ (pkgs.nerdfonts.override { fonts = [ "GoMono" ]; })
-	#      	];
 
 	system.activationScripts.applications.text = let
 	  env = pkgs.buildEnv {

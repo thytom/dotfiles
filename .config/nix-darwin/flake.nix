@@ -14,11 +14,17 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [ pkgs.vim
-	  pkgs.neovim
-	  pkgs.tmux
-	  pkgs.mkalias
-	  pkgs.alacritty
-      pkgs.nerd-fonts.go-mono
+          pkgs.neovim
+          pkgs.tmux
+          pkgs.mkalias
+          pkgs.nerd-fonts.go-mono
+          pkgs.fzf
+          pkgs.ripgrep
+
+          # Graphical Applications
+          pkgs.alacritty
+          pkgs.spotify
+          pkgs.discord
         ];
 
 	system.activationScripts.applications.text = let

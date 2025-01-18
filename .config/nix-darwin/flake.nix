@@ -18,9 +18,6 @@
           pkgs.neovim
           pkgs.tmux
           pkgs.mkalias
-          pkgs.nerd-fonts.go-mono
-          pkgs.nerd-fonts.victor-mono
-          pkgs.nerd-fonts.zed-mono
           pkgs.fzf
           pkgs.ripgrep
 
@@ -28,6 +25,11 @@
           pkgs.alacritty
           pkgs.spotify
         ];
+
+      fonts.packages = with pkgs; [
+          nerd-fonts.go-mono
+          b612
+      ];
 
       system.activationScripts.postUserActivation.text = ''
           apps_source="${config.system.build.applications}/Applications"

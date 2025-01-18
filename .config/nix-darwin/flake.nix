@@ -25,7 +25,6 @@
           # Graphical Applications
           pkgs.alacritty
           pkgs.spotify
-          pkgs.karabiner-elements
         ];
 
  system.activationScripts.postUserActivation.text = ''

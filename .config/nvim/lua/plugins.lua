@@ -7,7 +7,7 @@ require("lazy").setup({
   {'EdenEast/nightfox.nvim', 
     lazy=false,
     init = function()
-      vim.cmd.colorscheme "nightfox"
+      vim.cmd.colorscheme "carbonfox"
     end,
     config = function(opts)
       require('nightfox').setup({
@@ -50,13 +50,24 @@ require("lazy").setup({
   -- }, -- Lovely pastel theme
 
 -- UI
-  {'freddiehaddad/feline.nvim',
-    dependencies = {'EdenEast/nightfox.nvim'},
+  {'nvim-lualine/lualine.nvim',
+    dependencies = {
+        'nvim-tree/nvim-web-devicons'
+    },
     
     -- Fast statusbar plugin
     opts = {},
     config = function(opts)
-      require('feline').setup()
+      require('lualine').setup {
+          options = {
+              -- Default arrow separators
+              --component_separators = { left = '', right = ''},
+              --section_separators = { left = '', right = ''},
+              --component_separators = { left = '', right = ''},
+              component_separators = { left = '|', right = '|'},
+              section_separators = { left = '', right = ''},
+          }
+      }
     end
   },
 

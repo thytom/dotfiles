@@ -19,6 +19,8 @@
           pkgs.tmux
           pkgs.mkalias
           pkgs.nerd-fonts.go-mono
+          pkgs.nerd-fonts.victor-mono
+          pkgs.nerd-fonts.zed-mono
           pkgs.fzf
           pkgs.ripgrep
 

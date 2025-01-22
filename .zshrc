@@ -10,9 +10,6 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Nice Terminal Prompt
-zinit ice depth=1; zinit light nullxception/roundy
-
 # Syntax highlighting for commands
 zinit light zsh-users/zsh-syntax-highlighting
 
@@ -57,4 +54,6 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 # Aliases
 alias ls='ls --color'
 source ~/.dotfiles/.bash_aliases
+
+eval "$(starship init zsh)"
 

@@ -13,22 +13,21 @@
         nixpkgs.config.allowUnfree = true;
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [ pkgs.vim
-          pkgs.neovim
-          pkgs.tmux
-          pkgs.mkalias
-          pkgs.fzf
-          pkgs.ripgrep
-          pkgs.cmake
-          pkgs.ninja
-          pkgs.htop
-          pkgs.rsync
-          pkgs.starship
+      environment.systemPackages = with pkgs; [ 
+          vim
+          neovim
+          tmux
+          mkalias
+          fzf
+          ripgrep
+          cmake
+          ninja
+          htop
+          rsync
+          starship
+          nmap
 
-          pkgs.nmap
-
-          (pkgs.python3.withPackages (ps: with ps; [
+          (python3.withPackages (ps: with ps; [
             pip
             regex
             requests
@@ -36,19 +35,19 @@
             pyserial-asyncio
           ]))
 
-          pkgs.ffmpeg
+          ffmpeg
 
           # AVR Programming
-          pkgs.avrdude
-          pkgs.pkgsCross.avr.buildPackages.gcc
+          avrdude
+          pkgsCross.avr.buildPackages.gcc
 
           # LaTeX
-          pkgs.texliveFull
+          texliveFull
 
           # Graphical Applications
-          pkgs.alacritty
-          pkgs.spotify
-          pkgs.vlc-bin
+          alacritty
+          spotify
+          vlc-bin
         ];
 
       homebrew = {

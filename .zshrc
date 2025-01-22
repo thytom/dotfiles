@@ -17,8 +17,14 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light Aloxaf/fzf-tab
 
-# Load completions
-autoload -U compinit && compinit
+# Load Completions
+# Every 24h this will result in a slower launch as it checks if the cache needs
+# to be reloaded
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 
 # Snippets
 zinit snippet OMZP::git

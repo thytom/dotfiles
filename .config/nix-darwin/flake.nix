@@ -20,11 +20,50 @@
           pkgs.mkalias
           pkgs.fzf
           pkgs.ripgrep
+          pkgs.cmake
+          pkgs.ninja
+          pkgs.htop
+          pkgs.rsync
+          pkgs.starship
+
+          pkgs.nmap
+
+          (pkgs.python3.withPackages (ps: with ps; [
+            pip
+            regex
+            requests
+            pyserial
+            pyserial-asyncio
+          ]))
+
+          pkgs.ffmpeg
+
+          # AVR Programming
+          pkgs.avrdude
+          pkgs.pkgsCross.avr.buildPackages.gcc
+
+          # LaTeX
+          pkgs.texliveFull
 
           # Graphical Applications
           pkgs.alacritty
           pkgs.spotify
+          pkgs.vlc-bin
         ];
+
+      homebrew = {
+          enable = true;
+#onActivation.cleanup = "uninstall";
+
+          taps = [];
+          brews = [];
+          casks = [ 
+           "thunderbird" 
+           "obsidian"
+           "minecraft"
+           "google-chrome"
+          ];
+      };
 
       fonts.packages = with pkgs; [
           nerd-fonts.go-mono

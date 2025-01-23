@@ -20,8 +20,8 @@ vim.o.lazyredraw=true
 vim.o.showtabline = 2
 vim.o.relativenumber = true
 vim.o.listchars="tab:>-,trail:~,space:•"
-vim.o.foldmethod="syntax"
-vim.o.foldlevel=99
+vim.opt.foldmethod="syntax"
+vim.opt.foldlevel=99
 
 -- Nicer indentation for case statements
 vim.o.cinoptions="l1"

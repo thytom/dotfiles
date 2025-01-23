@@ -13,6 +13,8 @@ require('lspconfig').clangd.setup(require('coq').lsp_ensure_capabilities({
     '--query-driver=/usr/toolchains/arm-none-eabi/13/bin/arm-none-eabi-g++',
     '--query-driver=/usr/bin/arm-none-eabi-gcc',
     '--query-driver=/usr/bin/arm-none-eabi-g++',
+    '--query-driver=/run/current-system/sw/bin/avr-gcc',
+    '--query-driver=/run/current-system/sw/bin/avr-g++'  
   },
 }))
 

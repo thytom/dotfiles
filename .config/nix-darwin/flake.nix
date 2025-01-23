@@ -50,6 +50,8 @@
 # AVR
                 avrdude
                 pkgsCross.avr.buildPackages.gcc
+# ARM Embedded
+                gcc-arm-embedded
 
 # LaTeX
                 texliveFull

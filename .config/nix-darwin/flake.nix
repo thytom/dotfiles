@@ -5,10 +5,6 @@
         nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
         nix-darwin.url = "github:LnL7/nix-darwin/master";
         nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-        my-patch = {
-            type = "path";
-            path = "/Users/archie/.dotfiles/.config/nix-darwin/gcc-arm-embedded-13-info-fix.patch"; # Explicitly include the patch file
-        };
     };
 
     outputs = inputs@{ self, nix-darwin, nixpkgs }:
@@ -123,7 +119,7 @@
                  (final: prev: {
                       # Override an existing package
                       gcc-arm-embedded-13-local = prev.gcc-arm-embedded-13.overrideAttrs (old: {
-                              patches = [ inputs.my-patch ]; # Custom patches
+                              patches = [ ./gcc-arm-embedded-13-info-fix.patch ]; # Custom patches
                       });
                   })
                  ];

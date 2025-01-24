@@ -53,9 +53,6 @@
 # ARM Embedded
                 gcc-arm-embedded-13-local
 
-# LaTeX
-                texliveFull
-
 # Graphical Applications
                 alacritty
                 spotify

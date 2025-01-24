@@ -5,6 +5,10 @@
         nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
         nix-darwin.url = "github:LnL7/nix-darwin/master";
         nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+        my-patch = {
+            type = "path";
+            path = "/Users/archie/.dotfiles/.config/nix-darwin/gcc-arm-embedded-13-info-fix.patch"; # Explicitly include the patch file
+        };
     };
 
     outputs = inputs@{ self, nix-darwin, nixpkgs }:
@@ -51,7 +55,7 @@
                 avrdude
                 pkgsCross.avr.buildPackages.gcc
 # ARM Embedded
-                gcc-arm-embedded
+                gcc-arm-embedded-13-local
 
 # LaTeX
                 texliveFull
@@ -113,6 +117,17 @@
         darwinConfigurations."defiantly" = nix-darwin.lib.darwinSystem {
             modules = [ 
                 configuration 
+                ({ pkgs, ... }: {
+                  # Package overrides using overlays
+                 nixpkgs.overlays = [
+                 (final: prev: {
+                      # Override an existing package
+                      gcc-arm-embedded-13-local = prev.gcc-arm-embedded-13.overrideAttrs (old: {
+                              patches = [ inputs.my-patch ]; # Custom patches
+                      });
+                  })
+                 ];
+              })
             ];
         };
     };

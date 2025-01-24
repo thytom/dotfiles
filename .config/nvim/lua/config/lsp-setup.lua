@@ -14,8 +14,10 @@ require('lspconfig').clangd.setup(require('coq').lsp_ensure_capabilities({
     '--query-driver=/usr/bin/arm-none-eabi-gcc',
     '--query-driver=/usr/bin/arm-none-eabi-g++',
     '--query-driver=/run/current-system/sw/bin/avr-gcc',
-    '--query-driver=/run/current-system/sw/bin/avr-g++'  
-  },
+    '--query-driver=/run/current-system/sw/bin/avr-g++',
+    '--query-driver=/run/current-system/sw/bin/arm-none-eabi-gcc',
+    '--query-driver=/run/current-system/sw/bin/arm-none-eabi-g++'
+  },   
 }))
 
 require('lspconfig').pylsp.setup(require('coq').lsp_ensure_capabilities({

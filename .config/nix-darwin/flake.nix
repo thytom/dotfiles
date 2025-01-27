@@ -72,6 +72,7 @@
                     "obsidian"
                     "minecraft"
                     "google-chrome"
+                    "raycast"
                 ];
             };
 

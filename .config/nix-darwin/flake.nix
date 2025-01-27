@@ -23,6 +23,8 @@
                                        requests
                                        pyserial
                                        pyserial-asyncio
+                                       python-lsp-server
+                                       python-lsp-ruff
                 ]))
 
 # Workflow

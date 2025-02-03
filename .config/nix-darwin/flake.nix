@@ -59,6 +59,7 @@
                 alacritty
                 spotify
                 vlc-bin
+                openscad
                 ];
 
             homebrew = {

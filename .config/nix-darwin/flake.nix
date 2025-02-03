@@ -74,6 +74,7 @@
                     "minecraft"
                     "google-chrome"
                     "raycast"
+                    "bambu-studio"
                 ];
             };
 

@@ -48,6 +48,7 @@
 # General Dev
                 cmake
                 ninja
+                clang-tools
 
 # AVR
                 avrdude

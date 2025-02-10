@@ -32,6 +32,7 @@
                 tmux
                 zsh
                 neovim
+                git-absorb
 
 # Utils 
                 ffmpeg

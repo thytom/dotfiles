@@ -50,6 +50,7 @@
                 cmake
                 ninja
                 clang-tools
+                libclang.python
 
 # AVR
                 avrdude

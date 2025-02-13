@@ -78,6 +78,7 @@
                     "google-chrome"
                     "raycast"
                     "bambu-studio"
+                    "microsoft-teams"
                 ];
             };
 

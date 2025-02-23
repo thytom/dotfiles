@@ -4,5 +4,6 @@ return {
   opts = {}, -- for default options, refer to the configuration section for custom setup.
   config = function()
       require('mini.ai').setup()
+      require('mini.surround').setup()
   end,
 }

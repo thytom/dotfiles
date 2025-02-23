@@ -59,6 +59,7 @@
                 pkgsCross.avr.buildPackages.gcc
 # ARM Embedded
                 gcc-arm-embedded-13-local
+                gtest
 
 # Graphical Applications
                 alacritty

@@ -25,6 +25,8 @@
                                        pyserial-asyncio
                                        python-lsp-server
                                        python-lsp-ruff
+                                       flake8
+                                       ruff
                 ]))
 
 # Workflow

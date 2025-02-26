@@ -107,7 +107,11 @@ require("lazy").setup({
   },
   {'tanvirtin/vgit.nvim', dependenceis={'nvim-lua/plenary.nvim'}}, -- Git visualising
   {'tpope/vim-fugitive'}, -- Nice conflict resolution
-  {'voldikss/vim-floaterm'}, -- Floating terminals
+  {'voldikss/vim-floaterm',
+      config = function()
+          vim.g.floaterm_giteditor = false
+      end
+  }, -- Floating terminals
   {'artemave/workspace-diagnostics.nvim'}, -- Allow workspace diagnostics for LSP
 
 -- LSP

@@ -60,6 +60,8 @@
 # ARM Embedded
                 gcc-arm-embedded-13-local
                 gtest
+# RPi Microcontrollers
+                picotool
 
 # Graphical Applications
                 alacritty

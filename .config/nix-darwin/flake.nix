@@ -35,6 +35,7 @@
                 zsh
                 neovim
                 git-absorb
+                vscode
 
 # Utils 
                 ffmpeg

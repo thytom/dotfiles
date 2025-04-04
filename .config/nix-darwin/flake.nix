@@ -45,6 +45,7 @@
                 nmap
                 ripgrep
                 rsync
+                borgmatic
 
 # Nix Programming Lanuages
                 nil # Language server: https://github.com/oxalica/nil

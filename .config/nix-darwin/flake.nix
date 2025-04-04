@@ -49,6 +49,7 @@
                 tmux
                 zsh
                 neovim
+                git
                 git-absorb
                 vscode
 

@@ -93,6 +93,10 @@
                 enable = true;
                 onActivation.cleanup = "uninstall";
 
+                masApps = {
+                    "Whatsapp" = 310633997;
+                    "Wireguard" = 1451685025;
+                };
                 taps = [];
                 brews = [];
                 casks = [ 

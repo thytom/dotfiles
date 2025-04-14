@@ -90,18 +90,22 @@
 
             homebrew = {
                 enable = true;
-#onActivation.cleanup = "uninstall";
+                onActivation.cleanup = "uninstall";
 
                 taps = [];
                 brews = [];
                 casks = [ 
-                    "thunderbird" 
                     "obsidian"
                     "minecraft"
                     "google-chrome"
                     "raycast"
                     "bambu-studio"
                     "microsoft-teams"
+                    "microsoft-auto-update"
+                    "mattermost"
+                    "ibkr"
+                    "gqrx"
+                    "disk-inventory-x"
                 ];
             };
 

@@ -106,6 +106,7 @@
                     "ibkr"
                     "gqrx"
                     "disk-inventory-x"
+                    "aldente"
                 ];
             };
 

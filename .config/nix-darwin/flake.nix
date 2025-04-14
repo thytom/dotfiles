@@ -62,6 +62,7 @@
                 ripgrep
                 rsync
                 borgmatic
+                mas # Mac App Store cmdline interface
 
 # Nix Programming Lanuages
                 nil # Language server: https://github.com/oxalica/nil

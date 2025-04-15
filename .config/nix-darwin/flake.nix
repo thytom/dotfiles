@@ -114,6 +114,7 @@
                     "gqrx"
                     "disk-inventory-x"
                     "aldente"
+                    "hex-fiend"
                 ];
             };
 

@@ -92,6 +92,8 @@
             homebrew = {
                 enable = true;
                 onActivation.cleanup = "uninstall";
+                onActivation.autoUpdate = true;
+                onActivation.upgrade = true;
 
                 masApps = {
                     "Whatsapp" = 310633997;

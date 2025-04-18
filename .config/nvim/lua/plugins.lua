@@ -11,6 +11,9 @@ require("lazy").setup({
     end,
     config = function(opts)
       require('nightfox').setup({
+        options = {
+            transparent = true,
+        },
         specs = {
           all = {
             syntax = {

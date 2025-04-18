@@ -72,6 +72,9 @@
                 ninja
                 clang-tools
                 libclang.python
+                
+# Java
+                jetbrains.idea-community-bin
 
 # AVR
                 avrdude

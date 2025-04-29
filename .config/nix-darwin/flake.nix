@@ -72,6 +72,7 @@
                 ninja
                 clang-tools
                 libclang.python
+                gcc
                 
 # Java
                 jetbrains.idea-community-bin
@@ -118,6 +119,7 @@
                     "disk-inventory-x"
                     "aldente"
                     "hex-fiend"
+                    "stats"
                 ];
             };
 

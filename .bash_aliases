@@ -3,6 +3,7 @@ alias f="cd && cd \"\$(find {Projects,Documents,Work} -maxdepth 6 -type d | fzf)
 alias ff="cd && cd \"\$(find {Projects,Documents,Work} -type d | fzf)\""
 alias gc="git checkout \$(git branch | fzf)"
 alias gsc="git switch -c"
+alias grd="git restore ."
 alias gs="git status"
 alias gd="git diff"
 alias ta="tmux attach -t"

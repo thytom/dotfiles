@@ -113,7 +113,6 @@
                     "microsoft-teams"
                     "microsoft-auto-update"
                     "mattermost"
-                    "ibkr"
                     "gqrx"
                     "disk-inventory-x"
                     "aldente"

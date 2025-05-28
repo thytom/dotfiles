@@ -3,14 +3,52 @@
 
     inputs = {
         nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+        nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
         nix-darwin.url = "github:LnL7/nix-darwin/master";
         nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    outputs = inputs@{ self, nix-darwin, nixpkgs }:
+    outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-stable }:
         let
+        pkgs-stable = import nixpkgs-stable {
+            system="aarch64-darwin";
+            config.allowUnfree = true;
+        };
+
         configuration = { pkgs, config, ... }: {
             nixpkgs.config.allowUnfree = true;
+
+# XXX: This was added due to the removal of user-based install steps by nix-darwin.
+# At some point in the future, this is probably going to be deprecated in favour of something else.
+# Including the error verbatim:
+#
+# Failed assertions:
+#       - The `system.activationScripts.postUserActivation` option has
+#       been removed, as all activation now takes place as `root`. Please
+#       restructure your custom activation scripts appropriately,
+#       potentially using `sudo` if you need to run commands as a user.
+#
+#       - Previously, some nix-darwin options applied to the user running
+#       `darwin-rebuild`. As part of a long‐term migration to make
+#       nix-darwin focus on system‐wide activation and support first‐class
+#       multi‐user setups, all system activation now runs as `root`, and
+#       these options instead apply to the `system.primaryUser` user.
+#
+#       You currently have the following primary‐user‐requiring options set:
+#
+#       * `homebrew.enable`
+#
+#       To continue using these options, set `system.primaryUser` to the name
+#       of the user you have been using to run `darwin-rebuild`. In the long
+#       run, this setting will be deprecated and removed after all the
+#       functionality it is relevant for has been adjusted to allow
+#       specifying the relevant user separately, moved under the
+#       `users.users.*` namespace, or migrated to Home Manager.
+#
+#       If you run into any unexpected issues with the migration, please
+#       open an issue at <https://github.com/nix-darwin/nix-darwin/issues/new>
+#       and include as much information as possible.
+            system.primaryUser = "archie";
 
             security.pam.services.sudo_local.touchIdAuth = true;
 
@@ -87,10 +125,10 @@
                 picotool
 
 # Graphical Applications
-                alacritty
-                spotify
+                pkgs-stable.alacritty
+                kitty
                 vlc-bin
-                openscad
+                pkgs-stable.openscad
                 ];
 
             homebrew = {
@@ -105,6 +143,7 @@
                 taps = [];
                 brews = [];
                 casks = [ 
+                    "spotify"
                     "obsidian"
                     "minecraft"
                     "google-chrome"
@@ -126,14 +165,14 @@
                     b612
             ];
 
-            system.activationScripts.postUserActivation.text = ''
-                apps_source="${config.system.build.applications}/Applications"
-                moniker="Nix Trampolines"
-                app_target_base="$HOME/Applications"
-                app_target="$app_target_base/$moniker"
-                mkdir -p "$app_target"
-                ${pkgs.rsync}/bin/rsync --archive --checksum --chmod=-w --copy-unsafe-links --delete "$apps_source/" "$app_target"
-                '';
+            # system.activationScripts.postActivation.text = ''
+            #     apps_source="${config.system.build.applications}/Applications"
+            #     moniker="Nix Trampolines"
+            #     app_target_base="$HOME/Applications"
+            #     app_target="$app_target_base/$moniker"
+            #     mkdir -p "$app_target"
+            #     ${pkgs.rsync}/bin/rsync --archive --checksum --chmod=-w --copy-unsafe-links --delete "$apps_source/" "$app_target"
+            #     '';
 
 # Necessary for using flakes on this system.
             nix.settings.experimental-features = "nix-command flakes";
@@ -163,6 +202,7 @@
                  nixpkgs.overlays = [
                  (final: prev: {
                       # Override an existing package
+                      # TODO: Remove this once fixed
                       gcc-arm-embedded-13-local = prev.gcc-arm-embedded-13.overrideAttrs (old: {
                               patches = [ ./gcc-arm-embedded-13-info-fix.patch ]; # Custom patches
                       });
@@ -170,6 +210,9 @@
                  ];
               })
             ];
+            specialArgs = {
+                inherit pkgs-stable;
+            };
         };
     };
 }

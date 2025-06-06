@@ -18,6 +18,13 @@
         configuration = { pkgs, config, ... }: {
             nixpkgs.config.allowUnfree = true;
 
+            users.knownUsers = ["archie"];
+            users.users.archie.uid = 501;
+
+            programs.zsh.enable = true;
+
+            users.users.archie.shell = pkgs.zsh;
+
 # XXX: This was added due to the removal of user-based install steps by nix-darwin.
 # At some point in the future, this is probably going to be deprecated in favour of something else.
 # Including the error verbatim:
@@ -125,7 +132,7 @@
                 picotool
 
 # Graphical Applications
-                pkgs-stable.alacritty
+                alacritty
                 kitty
                 vlc-bin
                 pkgs-stable.openscad

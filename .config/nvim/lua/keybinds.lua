@@ -66,6 +66,7 @@ vim.keymap.set('n', 'gs', vim.lsp.buf.document_symbol, {noremap = true})
 vim.keymap.set('n', '<ctrl>k', vim.lsp.buf.hover, {noremap = true})
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename)
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
+vim.keymap.set('n', '<leader>ff', vim.lsp.buf.format)
 
 -- Toggle Whitespace
 vim.keymap.set("n", "<leader>l", "<cmd>set list!<cr>")

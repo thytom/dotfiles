@@ -40,6 +40,9 @@ require('lspconfig').pylsp.setup(require('coq').lsp_ensure_capabilities({
         pyflakes={
           enabled=false,
         },
+        black={
+          enabled=true,
+        },
       }
     }
   }

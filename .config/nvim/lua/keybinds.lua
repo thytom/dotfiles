@@ -63,7 +63,7 @@ vim.api.nvim_create_autocmd({"BufEnter"}, {
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, {noremap = true})
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {noremap = true})
 vim.keymap.set('n', 'gs', vim.lsp.buf.document_symbol, {noremap = true})
-vim.keymap.set('n', '<ctrl>k', vim.lsp.buf.hover, {noremap = true})
+vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, {noremap = true})
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename)
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
 vim.keymap.set('n', '<leader>ff', vim.lsp.buf.format)

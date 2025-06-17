@@ -166,6 +166,7 @@
                     "aldente"
                     "hex-fiend"
                     "stats"
+                    "kicad"
                 ];
             };
 

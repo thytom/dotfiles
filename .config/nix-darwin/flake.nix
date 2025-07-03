@@ -109,6 +109,7 @@
                 ripgrep
                 rsync
                 borgmatic
+                borgbackup
                 mas # Mac App Store cmdline interface
 
 # Nix Programming Lanuages

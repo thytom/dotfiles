@@ -153,6 +153,7 @@
                 taps = [];
                 brews = [];
                 casks = [ 
+                    "raspberry-pi-imager"
                     "spotify"
                     "obsidian"
                     "minecraft"

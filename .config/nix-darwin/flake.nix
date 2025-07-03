@@ -120,7 +120,7 @@
                 ninja
                 clang-tools
                 libclang.python
-                gcc
+                pkgs-stable.gcc
                 
 # Java
                 jetbrains.idea-community-bin

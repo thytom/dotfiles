@@ -98,6 +98,7 @@
                 neovim
                 git
                 git-absorb
+                tea # Gitea CLI
                 vscode
 
 # Utils 

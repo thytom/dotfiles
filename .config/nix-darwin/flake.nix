@@ -122,6 +122,8 @@
                 clang-tools
                 libclang.python
                 pkgs-stable.gcc
+
+                dfu-util
                 
 # Java
                 jetbrains.idea-community-bin

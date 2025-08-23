@@ -20,6 +20,11 @@ require("lazy").setup({
               comment = "white.dim"
             }
           }
+        },
+        groups = {
+            all = {
+                CursorLine = { bg = "#070707"}
+            }
         }
       })
     end

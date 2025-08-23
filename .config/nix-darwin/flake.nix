@@ -100,6 +100,7 @@
                 git-absorb
                 tea # Gitea CLI
                 vscode
+                uv # Fast python manager
 
 # Utils 
                 ffmpeg
@@ -157,7 +158,6 @@
                 brews = [];
                 casks = [ 
                     "raspberry-pi-imager"
-                    "spotify"
                     "obsidian"
                     "minecraft"
                     "google-chrome"

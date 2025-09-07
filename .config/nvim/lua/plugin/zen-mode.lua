@@ -8,5 +8,10 @@ return {
                 relativenumber = false,
             },
         }
-    }
+    },
+    config = function()
+        require('zen-mode').setup()
+        
+        vim.keymap.set('n', "<leader>zm", "<cmd>ZenMode<cr>")
+    end,
 }

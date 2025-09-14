@@ -63,3 +63,11 @@ source ~/.dotfiles/.bash_aliases
 
 eval "$(starship init zsh)"
 
+# Begin: PlatformIO Core completion support
+autoload -Uz compinit
+compinit
+eval "$(_PIO_COMPLETE=zsh_source pio)"
+# End: PlatformIO Core completion support
+
+# Set up PATH to prioritise nix binaries
+export PATH="/run/current-system/sw/bin:$PATH"

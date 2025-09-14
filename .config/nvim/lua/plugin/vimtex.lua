@@ -5,5 +5,7 @@ return {
   init = function()
     -- VimTeX configuration goes here, e.g.
     vim.g.vimtex_view_method = "open"
+
+    vim.keymap.set('n', 'T', '<cmd>VimtexTocOpen<cr>')
   end
 }

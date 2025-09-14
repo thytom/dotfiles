@@ -125,6 +125,9 @@
                 pkgs-stable.gcc
 
                 dfu-util
+
+# Documentation/Text
+                texliveFull # Required for proper LaTeX
                 
 # Java
                 jetbrains.idea-community-bin

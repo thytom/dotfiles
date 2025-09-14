@@ -130,6 +130,7 @@
                 texliveFull # Required for proper LaTeX
                 
 # Java
+                zulu # OpenJDK build
                 jetbrains.idea-community-bin
 
 # AVR

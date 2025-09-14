@@ -139,6 +139,8 @@
 # ARM Embedded
                 gcc-arm-embedded-13-local
                 gtest
+# ESP32
+                platformio
 # RPi Microcontrollers
                 picotool
 

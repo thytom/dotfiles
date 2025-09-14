@@ -16,7 +16,8 @@ require('lspconfig').clangd.setup(require('coq').lsp_ensure_capabilities({
     '--query-driver=/run/current-system/sw/bin/avr-gcc',
     '--query-driver=/run/current-system/sw/bin/avr-g++',
     '--query-driver=/run/current-system/sw/bin/arm-none-eabi-gcc',
-    '--query-driver=/run/current-system/sw/bin/arm-none-eabi-g++'
+    '--query-driver=/run/current-system/sw/bin/arm-none-eabi-g++',
+    '--query-driver=/Users/archie/.platformio/packages/**'
   },   
 }))
 

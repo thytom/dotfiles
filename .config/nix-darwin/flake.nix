@@ -113,6 +113,7 @@
                 borgmatic
                 borgbackup
                 mas # Mac App Store cmdline interface
+                minicom # USB-UART Bridges
 
 # Nix Programming Lanuages
                 nil # Language server: https://github.com/oxalica/nil

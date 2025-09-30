@@ -2,15 +2,15 @@
     description = "Example nix-darwin system flake";
 
     inputs = {
-        nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-        nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
-        nix-darwin.url = "github:LnL7/nix-darwin/master";
+        nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+        nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
         nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-stable }:
+    outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable }:
         let
-        pkgs-stable = import nixpkgs-stable {
+        pkgs-unstable = import nixpkgs-unstable {
             system="aarch64-darwin";
             config.allowUnfree = true;
         };
@@ -123,7 +123,7 @@
                 ninja
                 clang-tools
                 libclang.python
-                pkgs-stable.gcc
+                gcc
 
                 dfu-util
 
@@ -149,7 +149,7 @@
                 alacritty
                 kitty
                 vlc-bin
-                pkgs-stable.openscad
+                openscad
                 ];
 
             homebrew = {
@@ -234,7 +234,7 @@
               })
             ];
             specialArgs = {
-                inherit pkgs-stable;
+                inherit pkgs-unstable;
             };
         };
     };

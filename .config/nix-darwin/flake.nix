@@ -179,6 +179,7 @@
                     "hex-fiend"
                     "stats"
                     "kicad"
+                    "blender"
                 ];
             };
 

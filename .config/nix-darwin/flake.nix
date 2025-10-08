@@ -3,7 +3,7 @@
 
     inputs = {
         nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-        nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+        nixpkgs.url = "github:NixOS/nixpkgs/25.05";
         nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
         nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -172,7 +172,6 @@
                     "bambu-studio"
                     "microsoft-teams"
                     "microsoft-auto-update"
-                    "mattermost"
                     "gqrx"
                     "disk-inventory-x"
                     "aldente"

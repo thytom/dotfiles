@@ -52,5 +52,11 @@ require('lspconfig').pylsp.setup(require('coq').lsp_ensure_capabilities({
 require('lspconfig').clojure_lsp.setup(require('coq').lsp_ensure_capabilities({}))
 
 
-require'lspconfig'.nil_ls.setup(require('coq').lsp_ensure_capabilities({}))
+require'lspconfig'.nil_ls.setup(require('coq').lsp_ensure_capabilities({
+    settings = {
+        nil_ls = {
+            formatter = { command = {"nixpkgs-fmt"}}
+        }
+    }
+}))
 

@@ -117,6 +117,7 @@
 
 # Nix Programming Lanuages
                 nil # Language server: https://github.com/oxalica/nil
+                nixfmt # Formatter
 
 # General Dev
                 cmake

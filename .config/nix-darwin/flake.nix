@@ -102,6 +102,7 @@
                 tea # Gitea CLI
                 vscode
                 uv # Fast python manager
+                pre-commit # Framework for pre-commit hooks
 
 # Utils 
                 ffmpeg

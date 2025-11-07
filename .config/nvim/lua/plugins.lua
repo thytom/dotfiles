@@ -154,7 +154,6 @@ require("lazy").setup({
     end
   },
   {'tanvirtin/vgit.nvim', dependenceis={'nvim-lua/plenary.nvim'}}, -- Git visualising
-  {'tpope/vim-fugitive'}, -- Nice conflict resolution
   {'voldikss/vim-floaterm',
       config = function()
           vim.g.floaterm_giteditor = false

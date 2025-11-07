@@ -6,6 +6,10 @@
 -- C/C++
 require('lspconfig').clangd.setup(require('coq').lsp_ensure_capabilities({
   -- query-driver 
+  flags = {
+      debounce_text_changes = 150,
+      on_type_formatting = false,
+  },
   cmd = {
     "clangd",
     "--suggest-missing-includes",

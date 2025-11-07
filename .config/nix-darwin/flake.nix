@@ -89,6 +89,7 @@
                                        flake8
                                        ruff
                                        black
+                                       autopep8
                 ]))
 
 # Workflow

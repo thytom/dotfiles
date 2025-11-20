@@ -30,7 +30,6 @@ require('lspconfig').pylsp.setup(require('coq').lsp_ensure_capabilities({
   filetypes={'python'},
   settings = {
     configurationSources = {"flake8"},
-    formatCommand = {"black"},
     pylsp = {
       plugins = {
         pylint = {args = {'--ignore=F405,E501,E231', '-'}, enabled=true, debounce=200},
@@ -46,7 +45,7 @@ require('lspconfig').pylsp.setup(require('coq').lsp_ensure_capabilities({
           enabled=false,
         },
         black={
-          enabled=true,
+          enabled=false,
         },
       }
     }

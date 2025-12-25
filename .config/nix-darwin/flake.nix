@@ -130,6 +130,8 @@
 
                 dfu-util
 
+                hugo # Static Site Generator
+
 # Documentation/Text
                 texliveFull # Required for proper LaTeX
                 

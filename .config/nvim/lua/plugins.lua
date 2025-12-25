@@ -97,6 +97,12 @@ require("lazy").setup({
         },
         indent = {enable = true},
       })
+
+        vim.filetype.add({
+            extension = {
+                gotmpl = 'gotmpl',
+            },
+        })
     end
 
   },

@@ -140,12 +140,6 @@ require("lazy").setup({
 
         -- visual mode keymap
         vim.keymap.set("v", "<leader>cf", format_range, { desc = "Format selection with Conform" })
-
-        -- operator-style keymap
-        vim.keymap.set("n", "gq", function()
-            vim.o.operatorfunc = "v:lua.format_range"
-            return "g@"
-        end, { expr = true, desc = "Conform operator" })
     end
   },
   {'nvim-telescope/telescope.nvim', dependencies={'nvim-lua/plenary.nvim', 'stevearc/conform.nvim'}},

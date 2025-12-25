@@ -10,20 +10,18 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
+zinit ice blockf
+
 # Syntax highlighting for commands
 zinit light zsh-users/zsh-syntax-highlighting
 
 # Completions
 zinit light zsh-users/zsh-completions
+
 zinit light Aloxaf/fzf-tab
 
 # Load Completions
-# Every 24h this will result in a slower launch as it checks if the cache needs
-# to be reloaded
 autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-done
 compinit -C
 
 # Snippets
@@ -62,12 +60,6 @@ alias ls='ls --color'
 source ~/.dotfiles/.bash_aliases
 
 eval "$(starship init zsh)"
-
-# Begin: PlatformIO Core completion support
-autoload -Uz compinit
-compinit
-eval "$(_PIO_COMPLETE=zsh_source pio)"
-# End: PlatformIO Core completion support
 
 # Set up PATH to prioritise nix binaries
 export PATH="/run/current-system/sw/bin:$PATH"

@@ -155,6 +155,7 @@
                 kitty
                 vlc-bin
                 openscad
+                brave
                 ];
 
             homebrew = {

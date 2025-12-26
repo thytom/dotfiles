@@ -155,7 +155,6 @@
                 kitty
                 vlc-bin
                 openscad
-                brave
                 ];
 
             homebrew = {
@@ -185,6 +184,7 @@
                     "stats"
                     "kicad"
                     "blender"
+                    "brave"
                 ];
             };
 

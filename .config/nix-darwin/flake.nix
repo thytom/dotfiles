@@ -171,7 +171,7 @@
                 casks = [ 
                     "raspberry-pi-imager"
                     "obsidian"
-                    "minecraft"
+		    "prismlauncher"
                     "google-chrome"
                     "raycast"
                     "bambu-studio"
@@ -184,7 +184,7 @@
                     "stats"
                     "kicad"
                     "blender"
-                    "brave"
+                    "brave-browser"
                 ];
             };
 

@@ -100,3 +100,18 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
     command = "lua OpenDiagnosticIfNoFloat()",
     group = "lsp_diagnostics_hold",
 })
+
+
+vim.diagnostic.enable(false)
+vim.g["diagnostics_active"] = false
+function Toggle_diagnostics()
+    if vim.g.diagnostics_active then
+        vim.g.diagnostics_active = false
+        vim.diagnostic.enable(false)
+    else
+        vim.g.diagnostics_active = true
+        vim.diagnostic.enable(true)
+    end
+end
+
+vim.keymap.set('n', '<leader>xd', Toggle_diagnostics, { noremap = true, silent = true, desc = "Toggle vim diagnostics" })

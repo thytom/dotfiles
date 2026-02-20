@@ -23,7 +23,7 @@
             inherit system;
 
             specialArgs = {
-                inherit pkgs-unstable;
+                inherit self pkgs-unstable;
             };
 
             modules = [ 

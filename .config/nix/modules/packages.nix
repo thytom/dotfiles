@@ -1,21 +1,6 @@
 { pkgs, pkgs-unstable, ...}:
 {
     environment.systemPackages = with pkgs; [ 
-        (pkgs.stdenv.mkDerivation {
-            name = "python-clang-format";
-            src = pkgs.fetchurl {
-                url = "https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.6/clang-14.0.6.src.tar.xz";
-                sha256 = "sha256-K1hHtqYxGLnv5chVSDY8gf/glrZsOzZ16VPiY0KuQDE=";
-            };
-            sourceRoot = "clang-14.0.6.src";
-            phases = [ "unpackPhase" "installPhase" "fixupPhase" ];
-            propagatedBuildInputs = [ pkgs.python3 pkgs.clang-tools_14 ];
-            installPhase = ''
-                         mkdir -p $out/bin
-                         cp tools/clang-format/clang-format-diff.py $out/bin
-                         cp tools/clang-format/clang-format-diff.py $out/bin/clang-format-diff
-                         '';
-        })
         (python3.withPackages (ps: with ps; [
             pip
             regex

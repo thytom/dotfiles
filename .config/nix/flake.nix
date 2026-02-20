@@ -1,10 +1,10 @@
 {
-    description = "Example nix-darwin system flake";
+    description = "Unified system flake";
 
     inputs = {
         nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-        nixpkgs.url = "github:NixOS/nixpkgs/25.05";
-        nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
+        nixpkgs.url = "github:NixOS/nixpkgs/25.11";
+        nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.11";
         nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     };
 

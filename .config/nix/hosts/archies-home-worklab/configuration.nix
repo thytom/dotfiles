@@ -3,9 +3,28 @@
 let
     keys = import ../../secrets/keys.nix;
 in {
+    imports = [
+        ./hardware-configuration.nix
+    ];
+
     networking.hostName = "archies-home-worklab"; 
     time.timeZone = "Europe/London";
-    services.xserver.layout = "uk";
+
+    networking.networkmanager.enable = true;
+    
+    i18n.defaultLocale = "en_GB.UTF-8";
+
+    i18n.extraLocaleSettings = {
+        LC_ADDRESS = "en_GB.UTF_8";
+        LC_IDENTIFICATION = "en_GB.UTF_8";
+        LC_MEASUREMENT = "en_GB.UTF_8";
+        LC_MONETARY = "en_GB.UTF_8";
+        LC_NAME = "en_GB.UTF_8";
+        LC_NUMERIC = "en_GB.UTF_8";
+        LC_PAPER = "en_GB.UTF_8";
+        LC_TELEPHONE = "en_GB.UTF_8";
+        LC_TIME = "en_GB.UTF_8";
+    };
 
 
     age.secrets.user-password.file = ../../secrets/user-password.age;
@@ -35,6 +54,4 @@ in {
             }
         ];
     };
-
-    system.stateVersion = 25.11;
 }

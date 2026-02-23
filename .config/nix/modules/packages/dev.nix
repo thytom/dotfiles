@@ -17,8 +17,15 @@
             autopep8
         ]))
 
-        # Workflow
-        git-absorb
+        # C/C++
+        cmake
+        ninja
+        clang-tools
+        libclang.python
+        gcc
+
+        # Python
+        uv
 
         # Gitea CLI
         tea 

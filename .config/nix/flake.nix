@@ -52,7 +52,8 @@
                 home-manager.nixosModules.home-manager
                 ./modules/home.nix
                 agenix.nixosModules.default
-                ./modules/base-packages.nix
+                ./modules/base.nix
+                ./modules/users.nix
                 ./hosts/archies-home-worklab/configuration.nix
                 ./hosts/archies-home-worklab/hardware-configuration.nix
                 ./hosts/archies-home-worklab/modules/vm.nix

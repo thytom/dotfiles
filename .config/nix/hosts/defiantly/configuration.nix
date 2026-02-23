@@ -1,4 +1,4 @@
-{ config, pkgs, ...}:
+{ self, config, pkgs, ...}:
 {
     imports = [ 
         ./modules/homebrew.nix 
@@ -6,8 +6,8 @@
         ../../modules/users.nix
         ../../modules/home.nix
         ../../modules/fonts.nix
-        ../../modules/base-packages.nix
         ../../modules/packages/utility.nix
+        ../../modules/packages/tools.nix
         ../../modules/packages/dev.nix
         ../../modules/packages/embedded.nix
         ../../modules/packages/graphical.nix
@@ -19,8 +19,15 @@
         mas
     ];
 
+    users.knownUsers = [ "archie" ];
+    system.primaryUser = "archie";
+
     # home-manager.users.archie.home.homeDirectory = /Users/archie;
     users.users.archie.home = "/Users/archie";
 
+    security.pam.services.sudo_local.touchIdAuth = true;
 
+    system.stateVersion = 5;
+
+    nixpkgs.hostPlatform = "aarch64-darwin";
 }

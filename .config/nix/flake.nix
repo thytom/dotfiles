@@ -43,7 +43,6 @@
                     ./modules/fonts.nix
                     ./modules/base-packages.nix
                     ./modules/packages.nix
-                    ./modules/homebrew.nix
                     ./modules/overlays.nix
             ];
         };

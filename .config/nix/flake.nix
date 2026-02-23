@@ -8,9 +8,11 @@
         nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
         agenix.url = "github:ryantm/agenix";
         agenix.inputs.nixpkgs.follows = "nixpkgs";
+        home-manager.url = "github:nix-community/home-manager/release-25.11";
+        home-manager.inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, agenix }:
+    outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, agenix, home-manager }:
         let
         pkgs-unstable-darwin = import nixpkgs-unstable {
             system="aarch64-darwin";
@@ -33,8 +35,11 @@
             };
 
             modules = [ 
+                    home-manager.darwinModules.home-manager
+                    ./hosts/defiantly/configuration.nix
                     ./modules/base.nix
                     ./modules/users.nix
+                    ./modules/home.nix
                     ./modules/fonts.nix
                     ./modules/base-packages.nix
                     ./modules/packages.nix
@@ -52,6 +57,8 @@
             };
 
             modules = [
+                home-manager.nixosModules.home-manager
+                ./modules/home.nix
                 agenix.nixosModules.default
                 ./modules/base-packages.nix
                 ./hosts/archies-home-worklab/configuration.nix

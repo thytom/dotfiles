@@ -10,7 +10,7 @@
         agenix.inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable }:
+    outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, agenix }:
         let
         pkgs-unstable-darwin = import nixpkgs-unstable {
             system="aarch64-darwin";

@@ -1,6 +1,6 @@
 { pkgs, pkgs-unstable, ...}:
 {
-    environment.systempackages = with pkgs; [ 
+    environment.systemPackages = with pkgs; [ 
         latexmk
         biber
         (texlive.combine {

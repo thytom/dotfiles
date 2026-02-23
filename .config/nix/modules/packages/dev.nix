@@ -1,7 +1,7 @@
 
 { pkgs, pkgs-unstable, ...}:
 {
-    environment.systempackages = with pkgs; [ 
+    environment.systemPackages = with pkgs; [ 
         (python3.withPackages (ps: with ps; [
             pip
             regex

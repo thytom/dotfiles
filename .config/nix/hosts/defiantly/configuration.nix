@@ -14,7 +14,7 @@
         ../../modules/packages/latex.nix
     ];
 
-    environment.systempackages = with pkgs; [
+    environment.systemPackages = with pkgs; [
         # Mac app store command line interface
         mas
     ];

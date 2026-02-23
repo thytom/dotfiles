@@ -1,7 +1,7 @@
 # System tools I would want and expect on every system I have
 { config, pkgs, ...}:
 {
-    environment.systempackages = with pkgs; [
+    environment.systemPackages = with pkgs; [
         # Shell
         zsh
         starship

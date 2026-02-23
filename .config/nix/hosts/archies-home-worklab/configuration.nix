@@ -25,7 +25,7 @@ in {
     age.secrets.wg-private.file = ../../secrets/user-password.age;
     networking.wireguard.interfaces.wg0 = {
         ips = ["10.0.0.3/24"];
-        privateKeyfile = config.age.secrets.wg-private.path;
+        privateKeyFile = config.age.secrets.wg-private.path;
         peers = [
             { # Work gitea server
                 publicKey = "yurq5BLOyxvyLfGNuTRx7LoUfwR4vkb69AmV4hGcvCc=";
@@ -35,4 +35,6 @@ in {
             }
         ];
     };
+
+    system.stateVersion = 25.11;
 }

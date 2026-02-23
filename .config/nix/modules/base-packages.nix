@@ -1,5 +1,5 @@
 # These are the packages that I want to be on every machine I set up
-{ pkgs, pkgs-unstable }:
+{ pkgs, pkgs-unstable, ... }:
 {
     environment.systemPackages = with pkgs; [
         # Workflow

@@ -2,5 +2,5 @@
 {
     imports = [ ./modules/homebrew.nix ];
 
-    home-manager.users.archie.home.homeDirectory = "/Users/archie";
+    # home-manager.users.archie.home.homeDirectory = /Users/archie;
 }

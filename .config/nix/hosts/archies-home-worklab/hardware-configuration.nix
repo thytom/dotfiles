@@ -27,7 +27,7 @@
         {
             devices = "/dev/disk/by-uuid/877876c8-ed3c-4a9a-bffa-2e443e5b856e";
         }
-    ]
+    ];
 
     nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
     hardware.parallels.enable = true;

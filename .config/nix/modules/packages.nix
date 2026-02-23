@@ -17,40 +17,18 @@
         ]))
 
         # Workflow
-        starship
-        tmux
-        zsh
-        neovim
-        git
         git-absorb
         tea # Gitea CLI
         vscode
-        uv # Fast python manager
         pre-commit # Framework for pre-commit hooks
 
         # Utils 
         ffmpeg
         vim
-        htop
-        fzf
-        nmap
-        ripgrep
-        rsync
         borgmatic
         borgbackup
         mas # Mac App Store cmdline interface
         minicom # USB-UART Bridges
-
-        # Nix Programming Lanuages
-        nil # Language server: https://github.com/oxalica/nil
-        nixfmt # Formatter
-
-        # General Dev
-        cmake
-        ninja
-        clang-tools
-        libclang.python
-        gcc
 
         dfu-util
 

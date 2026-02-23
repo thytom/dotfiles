@@ -55,7 +55,7 @@
                 agenix.nixosModules.default
                 ./modules/base-packages.nix
                 ./hosts/archies-home-worklab/configuration.nix
-                /etc/nixos/hardware-configuration.nix
+                ./hosts/archies-home-worklab/hardware-configuration.nix
             ];
         };
     };

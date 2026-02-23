@@ -41,7 +41,7 @@ in {
     # Enable the OpenSSH daemon
     services.openssh.enable = true;
 
-    age.secrets.wg-private.file = ../../secrets/user-password.age;
+    age.secrets.wg-private.file = ../../secrets/wg-private.age;
     networking.wireguard.interfaces.wg0 = {
         ips = ["10.0.0.3/24"];
         privateKeyFile = config.age.secrets.wg-private.path;

@@ -37,13 +37,6 @@
             modules = [ 
                     home-manager.darwinModules.home-manager
                     ./hosts/defiantly/configuration.nix
-                    ./modules/base.nix
-                    ./modules/users.nix
-                    ./modules/home.nix
-                    ./modules/fonts.nix
-                    ./modules/base-packages.nix
-                    ./modules/packages.nix
-                    ./modules/overlays.nix
             ];
         };
 

@@ -23,6 +23,6 @@
 
                 # Extra Tables
                 tabularray;
-        });
+        })
     ];
 }

@@ -24,6 +24,7 @@
 
     # home-manager.users.archie.home.homeDirectory = /Users/archie;
     users.users.archie.home = "/Users/archie";
+    users.users.archie.uid = 501;
 
     security.pam.services.sudo_local.touchIdAuth = true;
 

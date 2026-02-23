@@ -1,22 +1,22 @@
 { pkgs, pkgs-unstable, ...}:
 {
     environment.systemPackages = with pkgs; [ 
-        latexmk
         biber
         (texlive.combine {
             inherit (texlive)
                 scheme-small
                 
                 # Fonts
-                lmodern
-                
+                collection-fontsrecommended
+
                 # Core LaTeX
                 latex
-                latexrecommended
-                latexextra
+                latexmk
+                collection-latexrecommended
+                collection-latexextra
                 
                 # Bibliography
-                bibtexextra
+                collection-bibtexextra
 
                 # Graphics / TikZ
                 pgf

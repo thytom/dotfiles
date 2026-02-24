@@ -12,6 +12,7 @@ alias vim="nvim"
 alias t="tmux"
 alias tl="tmux list-sessions"
 alias ta="tmux attach -t"
+alias q="exit"
 
 cherry_pick_from() {
   local src_branch="$1"

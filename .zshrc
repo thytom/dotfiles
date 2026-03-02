@@ -61,5 +61,7 @@ source ~/.dotfiles/.bash_aliases
 
 eval "$(starship init zsh)"
 
-# Set up PATH to prioritise nix binaries
-export PATH="/run/current-system/sw/bin:$PATH"
+# Set up PATH to prioritise nix binaries - if we're not in a nix shell!
+if [[ -z "$IN_NIX_SHELL" ]]; then
+    export PATH="/run/current-system/sw/bin:$PATH"
+fi

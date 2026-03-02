@@ -28,6 +28,7 @@
             "kicad"
             "blender"
             "brave-browser"
+            "element"
         ];
     };
 }

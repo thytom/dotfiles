@@ -8,6 +8,9 @@
         # Nix
         nil
         nixfmt
+
+        # Everything should have git
+        git
     ];
 
     system.configurationRevision = self.rev or self.dirtyRev or null;

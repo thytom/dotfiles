@@ -3,10 +3,10 @@ let
 in {
   "wg-private.age".publicKeys = [ 
         keys.defiantly
-        keys.nixosvm
+        keys.archies-home-worklab
   ];
   "user-password.age".publicKeys = [ 
         keys.defiantly
-        keys.nixosvm
+        keys.archies-home-worklab
   ];
 }

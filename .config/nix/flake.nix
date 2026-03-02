@@ -56,7 +56,6 @@
                 ./modules/users.nix
                 ./hosts/archies-home-worklab/configuration.nix
                 ./hosts/archies-home-worklab/hardware-configuration.nix
-                ./hosts/archies-home-worklab/modules/vm.nix
             ];
         };
     };

@@ -54,7 +54,8 @@
                 agenix.nixosModules.default
                 ./modules/base.nix
                 ./modules/users.nix
-                ./modules/tools.nix
+                ./modules/packages/tools.nix
+                ./modules/packages/dev.nix
                 ./hosts/archies-home-worklab/configuration.nix
                 ./hosts/archies-home-worklab/hardware-configuration.nix
             ];

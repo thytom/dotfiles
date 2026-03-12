@@ -71,5 +71,4 @@ require("lazy").setup({
     end,
   },
   { "nvim-lua/plenary.nvim" },
-  { "joechrisellis/lsp-format-modifications.nvim" },
 })

@@ -22,20 +22,6 @@ require "plugins"
 
 require "config/lsp-setup"
 
-require("nvim-tree").setup({
-  sort = {
-    sorter = "case_sensitive",
-  },
-  view = {
-    width = 30,
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-})
 
 require("nvim-treesitter.install").prefer_git = true
 

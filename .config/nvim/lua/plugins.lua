@@ -61,16 +61,6 @@ require("lazy").setup({
 
   -- Quality of Life
   { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim", "stevearc/conform.nvim" } },
-  {
-    "nvim-tree/nvim-tree.lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      -- Overrides netrw as the default file explorer
-      -- By tricking nvim into thinking it's already loaded
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-    end,
-  },
   { "tanvirtin/vgit.nvim", dependenceis = { "nvim-lua/plenary.nvim" } }, -- Git visualising
   {
     "voldikss/vim-floaterm",

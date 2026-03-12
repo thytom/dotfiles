@@ -1,13 +1,13 @@
 return {
   {
-    'Olical/conjure'
+    "Olical/conjure",
   },
 
   {
-    'tpope/vim-dispatch'
+    "tpope/vim-dispatch",
   },
 
   {
-    'radenling/vim-dispatch-neovim'
-  }
+    "radenling/vim-dispatch-neovim",
+  },
 }

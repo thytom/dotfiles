@@ -2,12 +2,12 @@ return {
   "folke/trouble.nvim",
   cmd = "Trouble",
   opts = {
-      win = {
-          type = "split",
-          relative = "win",
-          position = "right",
-          size = 0.3,
-      },
+    win = {
+      type = "split",
+      relative = "win",
+      position = "right",
+      size = 0.3,
+    },
   }, -- for default options, refer to the configuration section for custom setup.
   keys = {
     {
@@ -41,9 +41,9 @@ return {
       desc = "Quickfix List (Trouble)",
     },
     {
-        "<space>o",
-        "<cmd>Trouble lsp_document_symbols toggle win.position=right<cr>",
-        desc = "LSP document symbols"
-    }
+      "<space>o",
+      "<cmd>Trouble lsp_document_symbols toggle win.position=right<cr>",
+      desc = "LSP document symbols",
+    },
   },
 }

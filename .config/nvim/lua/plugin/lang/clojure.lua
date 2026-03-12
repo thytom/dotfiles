@@ -1,13 +1,10 @@
 return {
   {
     "Olical/conjure",
-  },
-
-  {
-    "tpope/vim-dispatch",
-  },
-
-  {
-    "radenling/vim-dispatch-neovim",
+    ft = "clj",
+    dependencies = {
+      "tpope/vim-dispatch",
+      "radenling/vim-dispatch-neovim",
+    },
   },
 }

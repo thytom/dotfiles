@@ -2,10 +2,8 @@
 --
 -- Language-server specific configurations once neovim/lsp-config has been set
 -- up.
-local coq = require('coq')
-
 -- C/C++
-vim.lsp.config('clangd', coq.lsp_ensure_capabilities({
+vim.lsp.config('clangd', {
   -- query-driver 
   flags = {
       debounce_text_changes = 150,
@@ -24,11 +22,10 @@ vim.lsp.config('clangd', coq.lsp_ensure_capabilities({
     '--query-driver=/run/current-system/sw/bin/arm-none-eabi-g++',
     '--query-driver=/Users/archie/.platformio/packages/**'
   },   
-}))
-vim.lsp.config('clangd', coq.lsp_ensure_capabilities({}))
+})
 vim.lsp.enable('clangd')
 
-vim.lsp.config('pylsp', require('coq').lsp_ensure_capabilities({
+vim.lsp.config('pylsp', {
   on_attach=on_attach,
   filetypes={'python'},
   settings = {
@@ -53,16 +50,15 @@ vim.lsp.config('pylsp', require('coq').lsp_ensure_capabilities({
       }
     }
   }
-}))
+})
 
-vim.lsp.config('clojure_lsp', require('coq').lsp_ensure_capabilities({}))
+vim.lsp.config('clojure_lsp', {})
 
-
-vim.lsp.config('nil_ls', require('coq').lsp_ensure_capabilities({
+vim.lsp.config('nil_ls', {
     settings = {
         nil_ls = {
             formatter = { command = {"nixpkgs-fmt"}}
         }
     }
-}))
+})
 

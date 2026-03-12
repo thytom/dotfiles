@@ -61,12 +61,6 @@ require("lazy").setup({
 
   -- Quality of Life
   { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim", "stevearc/conform.nvim" } },
-  {
-    "voldikss/vim-floaterm",
-    config = function()
-      vim.g.floaterm_giteditor = false
-    end,
-  }, -- Floating terminals
   { "artemave/workspace-diagnostics.nvim" }, -- Allow workspace diagnostics for LSP
 
   -- LSP

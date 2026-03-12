@@ -28,5 +28,8 @@
         # Nix
         nil
         nixfmt
+
+        # Lua
+        stylua
     ];
 }

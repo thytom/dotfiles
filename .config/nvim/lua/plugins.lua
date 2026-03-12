@@ -61,7 +61,6 @@ require("lazy").setup({
 
   -- Quality of Life
   { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim", "stevearc/conform.nvim" } },
-  { "tanvirtin/vgit.nvim", dependenceis = { "nvim-lua/plenary.nvim" } }, -- Git visualising
   {
     "voldikss/vim-floaterm",
     config = function()

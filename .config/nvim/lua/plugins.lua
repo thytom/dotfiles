@@ -59,9 +59,6 @@ require("lazy").setup({
     end,
   },
 
-  -- Quality of Life
-  { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim", "stevearc/conform.nvim" } },
-
   -- LSP
   {
     "neovim/nvim-lspconfig", -- REQUIRED: for native Neovim LSP integration

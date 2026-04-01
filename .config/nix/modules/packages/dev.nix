@@ -43,6 +43,10 @@
         # Static Site Generator
         hugo
 
+        # Mostly webshit
+        docker
+        flutter
+
         gtest
     ];
 }

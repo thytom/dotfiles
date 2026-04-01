@@ -88,3 +88,8 @@ chars = "\u001bb"
 key = "F"
 mods = "Alt"
 chars = "\u001bf"
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"

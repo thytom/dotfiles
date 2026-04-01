@@ -5,10 +5,10 @@
         onActivation.autoUpdate = true;
         onActivation.upgrade = true;
 
-        masApps = {
-            "Whatsapp" = 310633997;
-            "Wireguard" = 1451685025;
-        };
+        # masApps = {
+        #     # "Whatsapp" = 310633997;
+        #     "Wireguard" = 1451685025;
+        # };
         taps = [];
         brews = [];
         casks = [ 

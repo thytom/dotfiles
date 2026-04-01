@@ -65,3 +65,5 @@ eval "$(starship init zsh)"
 if [[ -z "$IN_NIX_SHELL" ]]; then
     export PATH="/run/current-system/sw/bin:$PATH"
 fi
+
+export EDITOR="nvim"

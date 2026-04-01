@@ -12,6 +12,7 @@
         ../../modules/packages/embedded.nix
         ../../modules/packages/graphical.nix
         ../../modules/packages/latex.nix
+        ../../modules/packages/typst.nix
     ];
 
     environment.systemPackages = with pkgs; [

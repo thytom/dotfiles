@@ -54,6 +54,21 @@ vim.lsp.config("pylsp", {
 
 vim.lsp.config("clojure_lsp", {})
 
+vim.lsp.config("rust-analyzer", {
+	cmd = { "rust-analyzer" },
+	filetypes = { "rust" },
+	root_markers = { "Cargo.toml" },
+	settings = {
+		["rust-analyzer"] = {
+			check = {
+				command = "clippy",
+			},
+		},
+	},
+})
+
+vim.lsp.enable("rust-analyzer")
+
 vim.lsp.config("nil_ls", {
   settings = {
     nil_ls = {

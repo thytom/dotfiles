@@ -18,6 +18,9 @@
                 # Bibliography
                 collection-bibtexextra
 
+                # Bytefields
+                bytefield
+
                 # Graphics / TikZ
                 pgf
 

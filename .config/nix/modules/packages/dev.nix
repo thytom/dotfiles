@@ -24,6 +24,9 @@
         libclang.python
         gcc
 
+        # Rust
+        rustup
+
         # Python
         uv
 

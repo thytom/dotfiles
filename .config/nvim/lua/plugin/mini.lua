@@ -6,7 +6,13 @@ return {
     require("mini.ai").setup()
     require("mini.surround").setup()
     require("mini.pairs").setup()
-    require("mini.indentscope").setup()
+    indentscope = require("mini.indentscope")
+    indentscope.setup({
+      draw = {
+        animation = indentscope.gen_animation.none()
+      }
+
+    })
     require("mini.completion").setup()
     require("mini.cmdline").setup()
     require("mini.tabline").setup()

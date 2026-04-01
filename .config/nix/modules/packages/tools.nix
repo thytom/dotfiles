@@ -10,6 +10,9 @@
         # Text editor
         neovim
 
+        # File Management
+        yazi
+
         # Finding things
         fzf
         ripgrep

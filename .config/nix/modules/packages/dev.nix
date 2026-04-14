@@ -26,6 +26,7 @@
 
         # Rust
         rustup
+        rustfmt
 
         # Python
         uv

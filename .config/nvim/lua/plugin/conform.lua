@@ -6,6 +6,7 @@ return {
       cpp = { "clang-format" },
       lua = { "stylua" },
       nix = { "nixfmt" },
+      rust = { "rustfmt" }
     },
 
     default_format_opts = {

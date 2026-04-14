@@ -69,6 +69,16 @@ vim.lsp.config("rust-analyzer", {
 
 vim.lsp.enable("rust-analyzer")
 
+vim.lsp.config("tinymist", {
+	settings = {
+		formatterMode = "typstyle", -- or "typstfmt"
+		formatterProseWrap = true, -- wrap lines in content mode
+		formatterPrintWidth = 80, -- limit line length to 80 if possible
+		formatterIndentSize = 4, -- indentation width
+	},
+})
+vim.lsp.enable("tinymist")
+
 vim.lsp.config("nil_ls", {
   settings = {
     nil_ls = {

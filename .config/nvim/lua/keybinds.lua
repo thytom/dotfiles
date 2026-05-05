@@ -5,6 +5,9 @@
 
 vim.keymap.set("n", "<ctrl>t", "<cmd>tabnew<cr>")
 
+-- Just QUIT
+vim.keymap.set("n", "QQ", "<cmd>qa<cr>")
+
 -- Splitting
 vim.keymap.set("n", "_", "<cmd>split<cr>")
 vim.keymap.set("n", [[|]], "<cmd>vsplit<cr>") -- Doesn't like | appearing in a normal string

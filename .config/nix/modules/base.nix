@@ -8,6 +8,7 @@
         # Nix
         nil
         nixfmt
+        nixos-rebuild
 
         # Everything should have git
         git

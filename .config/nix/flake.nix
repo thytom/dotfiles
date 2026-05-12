@@ -60,5 +60,19 @@
                 ./hosts/archies-home-worklab/hardware-configuration.nix
             ];
         };
+
+        nixosConfigurations."triton" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+
+          specialArgs = {
+            inherit self;
+            pkgs-unstable = pkgs-unstable-x86_64;
+          };
+
+          modules = [
+            agenix.nixosModules.default
+            ./hosts/triton/configuration.nix
+          ];
+        };
     };
 }

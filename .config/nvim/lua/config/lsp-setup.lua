@@ -86,3 +86,9 @@ vim.lsp.config("nil_ls", {
     },
   },
 })
+
+vim.lsp.config("jdtls", {})
+vim.lsp.enable("jdtls")
+
+vim.lsp.config("eslint", {})
+vim.lsp.enable("eslint")
